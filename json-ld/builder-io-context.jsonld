@@ -1,0 +1,112 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "builder": "https://www.builder.io/c/docs/",
+    "aid": "https://apis.io/aid",
+    "BuilderSpace": {
+      "@id": "builder:space",
+      "@type": "@id"
+    },
+    "BuilderModel": {
+      "@id": "builder:model",
+      "@type": "@id"
+    },
+    "BuilderContentEntry": {
+      "@id": "builder:content-entry",
+      "@type": "@id"
+    },
+    "BuilderElement": {
+      "@id": "builder:element",
+      "@type": "@id"
+    },
+    "id": "@id",
+    "name": "name",
+    "description": "description",
+    "published": {
+      "@id": "builder:published",
+      "@type": "xsd:string"
+    },
+    "modelId": {
+      "@id": "builder:modelId"
+    },
+    "priority": {
+      "@id": "builder:priority",
+      "@type": "xsd:integer"
+    },
+    "firstPublished": {
+      "@id": "schema:datePublished",
+      "@type": "xsd:long"
+    },
+    "lastUpdated": {
+      "@id": "schema:dateModified",
+      "@type": "xsd:long"
+    },
+    "startDate": {
+      "@id": "schema:startDate",
+      "@type": "xsd:long"
+    },
+    "endDate": {
+      "@id": "schema:endDate",
+      "@type": "xsd:long"
+    },
+    "data": {
+      "@id": "builder:data"
+    },
+    "variations": {
+      "@id": "builder:variations"
+    },
+    "testRatio": {
+      "@id": "builder:testRatio",
+      "@type": "xsd:float"
+    },
+    "blocks": {
+      "@id": "builder:blocks",
+      "@container": "@list"
+    },
+    "children": {
+      "@id": "builder:children",
+      "@container": "@list"
+    },
+    "component": {
+      "@id": "builder:component"
+    },
+    "responsiveStyles": {
+      "@id": "builder:responsiveStyles"
+    },
+    "bindings": {
+      "@id": "builder:bindings"
+    },
+    "apiKey": {
+      "@id": "builder:apiKey"
+    },
+    "locale": {
+      "@id": "schema:inLanguage"
+    },
+    "url": {
+      "@id": "schema:url",
+      "@type": "@id"
+    },
+    "tagName": {
+      "@id": "builder:tagName"
+    },
+    "layerName": {
+      "@id": "builder:layerName"
+    },
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "schema": "https://schema.org/"
+  },
+  "@type": "APIReference",
+  "name": "Builder.io API Context",
+  "description": "JSON-LD context for Builder.io Content, Write, Upload, Image, and Admin APIs.",
+  "url": "https://www.builder.io/c/docs/api-intro",
+  "provider": {
+    "@type": "Organization",
+    "name": "Builder.io",
+    "url": "https://www.builder.io",
+    "sameAs": [
+      "https://github.com/BuilderIO",
+      "https://twitter.com/builderio",
+      "https://www.linkedin.com/company/builder-io"
+    ]
+  }
+}

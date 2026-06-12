@@ -1,0 +1,213 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/builder-io/main/json-schema/builder-io-content-entry-schema.json",
+  "title": "BuilderContentEntry",
+  "description": "A single published content entry returned by the Builder.io Content API.",
+  "type": "object",
+  "properties": {
+    "@version": {
+      "type": "integer",
+      "description": "Schema version of the content entry.",
+      "example": 2
+    },
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the content entry.",
+      "pattern": "^[a-f0-9]{32}$",
+      "example": "abc123def456abc123def456abc12345"
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable name of the content entry.",
+      "example": "Home Page"
+    },
+    "published": {
+      "type": "string",
+      "enum": ["published", "draft", "archived"],
+      "description": "Publication status of the content entry.",
+      "example": "published"
+    },
+    "modelId": {
+      "type": "string",
+      "description": "The model type identifier for this content.",
+      "example": "page"
+    },
+    "priority": {
+      "type": "number",
+      "description": "Sort priority used when multiple entries match a query.",
+      "example": 0
+    },
+    "firstPublished": {
+      "type": "integer",
+      "description": "Unix timestamp in milliseconds when first published.",
+      "example": 1700000000000
+    },
+    "lastUpdated": {
+      "type": "integer",
+      "description": "Unix timestamp in milliseconds of last update.",
+      "example": 1717000000000
+    },
+    "startDate": {
+      "type": "integer",
+      "description": "Unix timestamp in milliseconds when the entry becomes active.",
+      "example": 1717000000000
+    },
+    "endDate": {
+      "type": "integer",
+      "description": "Unix timestamp in milliseconds when the entry expires.",
+      "example": 1719600000000
+    },
+    "variations": {
+      "type": "object",
+      "description": "Map of variation IDs to A/B test variation data.",
+      "additionalProperties": {
+        "$ref": "#/$defs/ContentVariation"
+      }
+    },
+    "testVariationId": {
+      "type": "string",
+      "description": "ID of the winning or current test variation."
+    },
+    "testVariationName": {
+      "type": "string",
+      "description": "Name of the current test variation."
+    },
+    "data": {
+      "type": "object",
+      "description": "Model-specific field data. Structure varies by model definition.",
+      "properties": {
+        "blocks": {
+          "type": "array",
+          "description": "Visual editor block elements.",
+          "items": {
+            "$ref": "#/$defs/BuilderElement"
+          }
+        },
+        "title": {
+          "type": "string",
+          "description": "Page or content title."
+        },
+        "url": {
+          "type": "string",
+          "description": "URL path associated with this content."
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "required": ["id"],
+  "$defs": {
+    "ContentVariation": {
+      "type": "object",
+      "description": "A/B test variation attached to a content entry.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique ID of this variation."
+        },
+        "name": {
+          "type": "string",
+          "description": "Display name of this variation."
+        },
+        "testRatio": {
+          "type": "number",
+          "description": "Traffic share (0–1) allocated to this variation.",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "data": {
+          "type": "object",
+          "description": "Override field data for this variation.",
+          "additionalProperties": true
+        }
+      }
+    },
+    "BuilderElement": {
+      "type": "object",
+      "description": "A visual element node in the Builder.io page tree.",
+      "properties": {
+        "@type": {
+          "type": "string",
+          "const": "@builder.io/sdk:Element"
+        },
+        "@version": {
+          "type": "integer"
+        },
+        "id": {
+          "type": "string"
+        },
+        "tagName": {
+          "type": "string",
+          "example": "div"
+        },
+        "layerName": {
+          "type": "string"
+        },
+        "children": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/BuilderElement"
+          }
+        },
+        "component": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "options": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          }
+        },
+        "responsiveStyles": {
+          "type": "object",
+          "properties": {
+            "large": {
+              "type": "object",
+              "additionalProperties": { "type": "string" }
+            },
+            "medium": {
+              "type": "object",
+              "additionalProperties": { "type": "string" }
+            },
+            "small": {
+              "type": "object",
+              "additionalProperties": { "type": "string" }
+            },
+            "xsmall": {
+              "type": "object",
+              "additionalProperties": { "type": "string" }
+            }
+          }
+        },
+        "bindings": {
+          "type": "object",
+          "additionalProperties": { "type": "string" }
+        },
+        "properties": {
+          "type": "object",
+          "additionalProperties": { "type": "string" }
+        },
+        "actions": {
+          "type": "object",
+          "additionalProperties": { "type": "string" }
+        },
+        "repeat": {
+          "oneOf": [
+            {
+              "type": "object",
+              "properties": {
+                "collection": { "type": "string" },
+                "itemName": { "type": "string" }
+              },
+              "required": ["collection"]
+            },
+            { "type": "null" }
+          ]
+        }
+      }
+    }
+  }
+}

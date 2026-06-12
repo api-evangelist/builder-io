@@ -44,6 +44,8 @@ apis:
     properties:
       - type: Documentation
         url: https://www.builder.io/c/docs/content-api
+      - type: OpenAPI
+        url: openapi/builder-io-content-api-openapi.yml
 
   - aid: builder-io:graphql-api
     name: Builder.io GraphQL Content API
@@ -150,6 +152,12 @@ common:
     url: rate-limits/builder-io-rate-limits.yml
   - type: FinOps
     url: finops/builder-io-finops.yml
+  - type: BlogFeeds
+    url: blogs/blogs.json
+  - type: JSONLDContext
+    url: json-ld/builder-io-context.jsonld
+  - type: Vocabulary
+    url: vocabulary/builder-io-vocabulary.yml
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

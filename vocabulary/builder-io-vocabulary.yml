@@ -1,0 +1,106 @@
+vocabulary:
+  - term: Space
+    definition: >-
+      The top-level organizational unit in Builder.io. A space contains all
+      models, content entries, assets, and settings for a project or brand.
+      Each space has a unique public API key and a private space key.
+
+  - term: Model
+    definition: >-
+      A content schema definition in Builder.io. Models define the structure
+      of content entries (fields, types, validations). Common models include
+      "page", "section", and custom data models.
+
+  - term: Content Entry
+    definition: >-
+      A single instance of content conforming to a model. Content entries
+      have a published state, priority, targeting rules, and a data payload
+      containing the model's field values and visual blocks.
+
+  - term: Block
+    definition: >-
+      A visual element node in the Builder.io page tree, represented as a
+      BuilderElement object. Blocks can be HTML tags, registered components,
+      or layout containers with children, styles, and bindings.
+
+  - term: Component
+    definition: >-
+      A registered UI component (e.g., React, Vue, Svelte) that can be
+      placed in the visual editor. Components expose inputs that editors
+      configure without writing code.
+
+  - term: PublicApiKey
+    definition: >-
+      A read-only key associated with a Builder.io space used to authenticate
+      Content API and GraphQL Content API requests. Safe to expose client-side.
+
+  - term: PrivateSpaceKey
+    definition: >-
+      A secret key (prefixed "bpk") used to authenticate Admin GraphQL API
+      requests. Must be kept server-side only.
+
+  - term: A/B Test
+    definition: >-
+      A content experiment where traffic is split between a control content
+      entry and one or more variations. Controlled via the variations map
+      and testRatio on each BuilderContent object.
+
+  - term: Targeting
+    definition: >-
+      The ability to serve different content entries to users based on
+      userAttributes such as urlPath, device, country, or custom attributes.
+      Evaluated server-side or client-side via the SDK.
+
+  - term: Symbol
+    definition: >-
+      A reusable content block in Builder.io that can be embedded in multiple
+      pages. When enrich is enabled, symbol references are replaced with
+      their full content data.
+
+  - term: Personalization
+    definition: >-
+      Delivering different content variations to distinct audience segments
+      based on user attributes, behavioral data, or custom rules defined
+      in the Builder.io editor.
+
+  - term: Enrich
+    definition: >-
+      A Content API query parameter that, when true, replaces reference IDs
+      and Symbol placeholders with their full content data inline in
+      the response.
+
+  - term: Priority
+    definition: >-
+      A numeric field on content entries that determines which entry is served
+      when multiple entries match the same targeting rules. Higher numeric
+      value means higher priority.
+
+  - term: Locale
+    definition: >-
+      A BCP-47 language/region code (e.g., "en-US", "fr-FR") used to retrieve
+      localized versions of content entries when multilingual content is
+      configured in a Builder.io space.
+
+  - term: Variation
+    definition: >-
+      An alternate version of a content entry used in A/B testing. Stored
+      in the variations map of a BuilderContent object with its own
+      data overrides and testRatio.
+
+  - term: Webhook
+    definition: >-
+      An HTTP callback configured in Builder.io (via the Admin API) that
+      triggers on content lifecycle events such as publish, unpublish,
+      or model changes.
+
+  - term: Mitosis
+    definition: >-
+      Builder.io's open-source tool for writing UI components once in a
+      JSX-like syntax and compiling them to React, Vue, Svelte, Angular,
+      Qwik, and other framework targets.
+
+  - term: CDN
+    definition: >-
+      Builder.io's content delivery network serving content API responses
+      from cdn.builder.io. Responses are edge-cached for performance and
+      cache duration can be controlled via the cacheSeconds parameter.

@@ -1,0 +1,103 @@
+{
+  "description": "Example response from GET /api/v3/content/page?apiKey=YOUR_KEY&url=/home&limit=1",
+  "request": {
+    "method": "GET",
+    "url": "https://cdn.builder.io/api/v3/content/page",
+    "queryParameters": {
+      "apiKey": "YOUR_PUBLIC_API_KEY",
+      "url": "/home",
+      "limit": 1,
+      "enrich": false
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "results": [
+        {
+          "@version": 2,
+          "id": "abc123def456abc123def456abc12345",
+          "name": "Home Page",
+          "published": "published",
+          "modelId": "page",
+          "priority": 0,
+          "firstPublished": 1700000000000,
+          "lastUpdated": 1717000000000,
+          "data": {
+            "title": "Welcome to Our Site",
+            "description": "The home page of our website built with Builder.io.",
+            "url": "/home",
+            "blocks": [
+              {
+                "@type": "@builder.io/sdk:Element",
+                "@version": 2,
+                "id": "elem-001",
+                "tagName": "div",
+                "layerName": "Hero Section",
+                "responsiveStyles": {
+                  "large": {
+                    "display": "flex",
+                    "flexDirection": "column",
+                    "alignItems": "center",
+                    "paddingTop": "80px",
+                    "paddingBottom": "80px"
+                  },
+                  "medium": {
+                    "paddingTop": "40px",
+                    "paddingBottom": "40px"
+                  }
+                },
+                "children": [
+                  {
+                    "@type": "@builder.io/sdk:Element",
+                    "@version": 2,
+                    "id": "elem-002",
+                    "component": {
+                      "name": "Text",
+                      "options": {
+                        "text": "<h1>Build Faster with Builder.io</h1>"
+                      }
+                    },
+                    "responsiveStyles": {
+                      "large": {
+                        "fontSize": "48px",
+                        "fontWeight": "700",
+                        "textAlign": "center"
+                      }
+                    }
+                  },
+                  {
+                    "@type": "@builder.io/sdk:Element",
+                    "@version": 2,
+                    "id": "elem-003",
+                    "component": {
+                      "name": "Button",
+                      "options": {
+                        "text": "Get Started",
+                        "link": "/signup",
+                        "openLinkInNewTab": false
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "variations": {
+            "variant-001": {
+              "id": "variant-001",
+              "name": "B - New Headline",
+              "testRatio": 0.5,
+              "data": {
+                "title": "Ship Pages Without Devs",
+                "blocks": []
+              }
+            }
+          },
+          "testVariationId": "variant-001",
+          "testVariationName": "B - New Headline"
+        }
+      ]
+    }
+  }
+}
