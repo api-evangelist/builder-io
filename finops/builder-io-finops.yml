@@ -1,0 +1,73 @@
+---
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Builder.io
+providerId: builder-io
+created: '2026-06-12'
+modified: '2026-06-12'
+reconciled: true
+tags:
+  - FinOps
+  - FOCUS
+description: >-
+  FOCUS-aligned FinOps profile for Builder.io. Billing is seat-based (per user
+  per month) with a consumption layer of AI Agent Credits that governs AI-
+  powered features including code and content generation. Costs scale with
+  headcount and AI feature usage. Enterprise customers negotiate custom credit
+  allocations and seat pricing.
+sources:
+  - https://www.builder.io/m/pricing
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Builder.io
+serviceCategory: Developer Tools / Headless CMS
+billingModel:
+  pricingCategory: Subscription + Consumption
+  billingFrequency: Monthly
+  billingCurrency: USD
+focusColumns:
+  ServiceName: Builder.io
+  ServiceCategory: Developer Tools
+  ProviderName: Builder.io
+  PublisherName: Builder.io
+  BillingCurrency: USD
+meters:
+  - name: Seats (Users)
+    unit: user/month
+    aggregation: sum
+    notes: Per-user monthly seat fee. Pro at $24/user, Team at $40/user. Free up to 5 users.
+  - name: Agent Credits
+    unit: credit
+    aggregation: sum
+    notes: >-
+      AI usage meter consumed by AI-powered actions. Free: 75/month; Pro: 500/month;
+      Team: 500/month (unlimited via top-up); Enterprise: custom.
+      Top-ups available at $25 per 500 credits on Pro+ plans.
+  - name: Agent Credit Rollover
+    unit: credit
+    aggregation: max
+    notes: >-
+      Unused credits roll over on Pro and higher plans, capped at 2x monthly
+      allocation. Provides built-in buffer against month-to-month usage variance.
+principles:
+  - name: Visibility
+    description: >-
+      Track monthly seat count and Agent Credit consumption per space to
+      understand cost drivers. Monitor actual vs. allocated credits to detect
+      underuse or overuse early.
+  - name: Optimization
+    description: >-
+      Right-size seat count; remove inactive users to reduce per-seat charges.
+      Leverage credit rollover buffer before purchasing pay-as-you-go top-ups.
+      Use CDN-friendly query patterns (low-cardinality userAttributes) to reduce
+      origin API load and avoid throttling at scale.
+  - name: Accountability
+    description: >-
+      Assign Builder.io spaces to cost centers by team or product area. Use
+      enterprise RBAC to enforce budget ownership. Review AI Credit usage by
+      team to charge back or allocate fairly.

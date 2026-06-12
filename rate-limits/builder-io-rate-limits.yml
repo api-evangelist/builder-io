@@ -1,0 +1,65 @@
+---
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Builder.io
+providerId: builder-io
+created: '2026-06-12'
+modified: '2026-06-12'
+reconciled: true
+tags:
+  - Rate Limiting
+description: >-
+  Builder.io does not publicly document explicit numeric rate limits for its
+  Content, GraphQL, or Admin APIs. The platform uses CDN caching (stale-while-
+  revalidate) to absorb read traffic, and advises keeping query cardinality low
+  to maximize cache hit rates. The API returns HTTP 429 on throttling. Specific
+  limits for write and admin operations may be available upon request from
+  Builder.io support or enterprise sales. Agent Credits govern AI-feature
+  consumption across all plans.
+sources:
+  - https://www.builder.io/c/docs/performance-and-uptime
+  - https://www.builder.io/c/docs/content-api
+headers:
+  retryAfter: Retry-After
+responseCodes:
+  throttled: 429
+limits:
+  - name: Content API CDN Read
+    scope: key
+    metric: requests_per_minute
+    limit: -1
+    timeFrame: minute
+    notes: >-
+      No publicly documented numeric limit. CDN layer (stale-while-revalidate)
+      absorbs most read traffic. Keep userAttributes cardinality low to maximize
+      cache hits.
+
+  - name: GraphQL Content API Read
+    scope: key
+    metric: requests_per_minute
+    limit: -1
+    timeFrame: minute
+    notes: >-
+      No publicly documented numeric limit. GET requests preferred for caching.
+      POST requests bypass CDN cache and are subject to origin rate limits
+      not publicly disclosed.
+
+  - name: Admin GraphQL API
+    scope: key
+    metric: requests_per_minute
+    limit: -1
+    timeFrame: minute
+    notes: >-
+      Private API authenticated via Bearer token. No publicly documented rate
+      limits. Contact Builder.io support for enterprise-tier limits.
+
+  - name: Agent Credits (AI Features)
+    scope: org
+    metric: credits_per_month
+    limit: 75
+    timeFrame: month
+    notes: >-
+      Free tier: 75 credits/month, 25 credits/day. Pro and Team: 500 credits/month
+      with rollover up to 2x monthly allocation. Enterprise: custom. Pay-as-you-go
+      top-ups available at $25 per 500 credits on Pro+.

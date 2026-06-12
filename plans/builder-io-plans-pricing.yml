@@ -1,0 +1,161 @@
+---
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Builder.io
+providerId: builder-io
+created: '2026-06-12'
+modified: '2026-06-12'
+reconciled: true
+tags:
+  - Headless CMS
+  - Visual Development
+  - Content Delivery
+  - A/B Testing
+description: >-
+  Builder.io offers four pricing tiers — Free, Pro, Team, and Enterprise —
+  structured around per-user monthly costs and AI Agent Credits that power
+  AI-assisted content and code generation features. The Free tier allows up to
+  5 users with 75 monthly Agent Credits. Paid tiers add credit rollover,
+  collaboration controls, and enterprise governance features.
+sources:
+  - https://www.builder.io/m/pricing
+plans:
+  - id: builder-io-free
+    name: Free
+    type: free
+    description: >-
+      For individuals exploring the platform. Includes up to 5 users per space,
+      25 daily Agent Credits, and 75 monthly Agent Credits. Includes a 14-day
+      trial of Pro features.
+    entries:
+      - label: Users per Space
+        name: users_per_space
+        type: quota
+        metric: users
+        limit: 5
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0'
+        userMultiplied: false
+      - label: Monthly Agent Credits
+        name: monthly_agent_credits
+        type: quota
+        metric: credits
+        limit: 75
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0'
+        userMultiplied: false
+      - label: Daily Agent Credits
+        name: daily_agent_credits
+        type: quota
+        metric: credits
+        limit: 25
+        timeFrame: day
+        geo: global
+        unit: 1
+        price: '0'
+        userMultiplied: false
+
+  - id: builder-io-pro
+    name: Pro
+    type: freemium
+    description: >-
+      For individuals and small teams shipping projects. Up to 5 users per space,
+      500 monthly Agent Credits, 30-day history, standard support, and pay-as-you-go
+      credit top-ups at $25 per 500 credits. Unused credits roll over up to 2x
+      monthly allocation.
+    entries:
+      - label: Users per Space
+        name: users_per_space
+        type: quota
+        metric: users
+        limit: 5
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '24'
+        userMultiplied: true
+      - label: Monthly Agent Credits
+        name: monthly_agent_credits
+        type: quota
+        metric: credits
+        limit: 500
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0'
+        userMultiplied: false
+      - label: Pay-as-you-go Agent Credits
+        name: payg_agent_credits
+        type: metered
+        metric: credits
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 500
+        price: '25'
+        userMultiplied: false
+
+  - id: builder-io-team
+    name: Team
+    type: paid
+    description: >-
+      For teams building and iterating on larger projects. Up to 20 users per
+      space, 500 monthly Agent Credits with unlimited max via top-ups, AI training
+      opt-out, Slack and JIRA integration, multiple roles, peer reviews, and
+      priority support.
+    entries:
+      - label: Users per Space
+        name: users_per_space
+        type: quota
+        metric: users
+        limit: 20
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '40'
+        userMultiplied: true
+      - label: Monthly Agent Credits
+        name: monthly_agent_credits
+        type: quota
+        metric: credits
+        limit: 500
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0'
+        userMultiplied: false
+
+  - id: builder-io-enterprise
+    name: Enterprise
+    type: enterprise
+    description: >-
+      For organizations needing scale, control, and dedicated support. Includes
+      custom user limits, custom Agent Credit allocation, SSO (SAML/OIDC), RBAC,
+      Design System Intelligence, privacy mode, premium SLAs, and onboarding
+      assistance.
+    entries:
+      - label: Users per Space
+        name: users_per_space
+        type: quota
+        metric: users
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: 'custom'
+        userMultiplied: false
+      - label: Monthly Agent Credits
+        name: monthly_agent_credits
+        type: quota
+        metric: credits
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: 'custom'
+        userMultiplied: false

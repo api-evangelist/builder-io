@@ -1,0 +1,155 @@
+---
+aid: builder-io
+name: Builder.io
+description: >-
+  Builder.io is a visual development platform and headless CMS that enables
+  teams to build, test, and optimize digital experiences without requiring
+  constant developer involvement. The platform combines an AI-powered visual
+  editor with a suite of APIs including REST Content, GraphQL, Write, Upload,
+  Image, Assets, and Admin APIs for managing and delivering content at scale.
+  Builder.io supports A/B testing, personalization, and targeting, making it
+  suitable for marketing and product teams working across web and mobile
+  channels. It integrates natively with React, Vue, Svelte, Qwik, Angular, and
+  other frameworks through official SDKs, and connects to Git-based workflows
+  via GitHub, GitLab, and Bitbucket.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - Headless CMS
+  - Visual Development
+  - Content Delivery
+  - A/B Testing
+  - GraphQL
+  - REST
+  - Personalization
+  - Page Building
+url: https://raw.githubusercontent.com/api-evangelist/builder-io/refs/heads/main/apis.yml
+created: '2026-06-12'
+modified: '2026-06-12'
+specificationVersion: '0.19'
+apis:
+  - aid: builder-io:content-api
+    name: Builder.io Content API
+    description: >-
+      REST API for retrieving published content from Builder.io models. Supports
+      filtering via MongoDB-style queries, targeting by user attributes, locale,
+      and URL path. Returns paginated JSON results with support for enriched
+      references and nested content symbols.
+    humanURL: https://www.builder.io/c/docs/content-api
+    baseURL: https://cdn.builder.io/api/v3/content
+    tags:
+      - Content Delivery
+      - REST
+      - Headless CMS
+    properties:
+      - type: Documentation
+        url: https://www.builder.io/c/docs/content-api
+
+  - aid: builder-io:graphql-api
+    name: Builder.io GraphQL Content API
+    description: >-
+      GraphQL API for querying Builder.io content models with type-safe schemas.
+      Supports GET and POST requests, model-level queries with pagination, and
+      targeting via user attributes. The interactive GraphQL Explorer is
+      available for schema discovery and testing.
+    humanURL: https://www.builder.io/c/docs/graphql-api
+    baseURL: https://cdn.builder.io/api/v3/graphql
+    tags:
+      - GraphQL
+      - Content Delivery
+      - Headless CMS
+    properties:
+      - type: Documentation
+        url: https://www.builder.io/c/docs/graphql-api
+
+  - aid: builder-io:admin-api
+    name: Builder.io Admin GraphQL API
+    description: >-
+      Private GraphQL API for back-end servers and trusted integrations. Enables
+      space management, user access control, SSO configuration (SAML/OIDC),
+      webhook setup, model and folder management, and asset retrieval.
+      Authenticated via Bearer token using a private space key.
+    humanURL: https://www.builder.io/c/docs/admin-graphql-api
+    baseURL: https://cdn.builder.io/api/v2/admin
+    tags:
+      - GraphQL
+      - Admin
+      - Management
+    properties:
+      - type: Documentation
+        url: https://www.builder.io/c/docs/admin-graphql-api
+
+  - aid: builder-io:write-api
+    name: Builder.io Write API
+    description: >-
+      API for programmatically creating, updating, and deleting content entries
+      in Builder.io. Intended for server-side automation and content migration
+      workflows that need to manage Builder models at scale.
+    humanURL: https://www.builder.io/c/docs/api-intro
+    baseURL: https://cdn.builder.io/api/v3
+    tags:
+      - Content Management
+      - REST
+      - Write
+    properties:
+      - type: Documentation
+        url: https://www.builder.io/c/docs/api-intro
+
+  - aid: builder-io:upload-api
+    name: Builder.io Upload API
+    description: >-
+      API for programmatically uploading files such as images and videos to
+      Builder.io. Supports automation of asset ingestion pipelines and bulk
+      media management workflows.
+    humanURL: https://www.builder.io/c/docs/api-intro
+    baseURL: https://cdn.builder.io/api/v3
+    tags:
+      - Upload
+      - Assets
+      - Media
+    properties:
+      - type: Documentation
+        url: https://www.builder.io/c/docs/api-intro
+
+  - aid: builder-io:image-api
+    name: Builder.io Image API
+    description: >-
+      API for accessing and downloading optimized versions of images uploaded to
+      Builder.io. Supports on-the-fly image transformation and CDN-optimized
+      delivery for web performance use cases.
+    humanURL: https://www.builder.io/c/docs/api-intro
+    baseURL: https://cdn.builder.io
+    tags:
+      - Images
+      - Media
+      - CDN
+    properties:
+      - type: Documentation
+        url: https://www.builder.io/c/docs/api-intro
+
+common:
+  - type: Website
+    url: https://www.builder.io
+  - type: Documentation
+    url: https://www.builder.io/c/docs/api-intro
+  - type: GitHubOrganization
+    url: https://github.com/BuilderIO
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/builder-io
+  - type: X
+    url: https://twitter.com/builderio
+  - type: Blog
+    url: https://www.builder.io/blog
+  - type: Pricing
+    url: https://www.builder.io/m/pricing
+  - type: StatusPage
+    url: https://status.builder.io
+  - type: Plans
+    url: plans/builder-io-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/builder-io-rate-limits.yml
+  - type: FinOps
+    url: finops/builder-io-finops.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
