@@ -1,0 +1,1977 @@
+"""
+Builder.io GraphQL Content API Schema
+Endpoint: https://cdn.builder.io/api/v3/graphql/{yourPublicApiKey}
+Source: Live introspection on 2026-06-14
+Types: 321 user-defined types (314 OBJECT, 7 SCALAR)
+
+Each content model in a Builder.io space generates:
+  - A content type (e.g. Page, BlogArticle, Symbol)
+  - A data sub-type with the model's custom fields (e.g. PageData, BlogArticleData)
+  - Two root query fields: a list query and a single-item query
+
+The types below reflect the confirmed schema from Builder.io's public API space.
+Space-specific custom models generate additional types following the same pattern.
+"""
+
+scalar JSON
+scalar JSONObject
+scalar ID
+scalar String
+scalar Float
+scalar Int
+scalar Boolean
+
+"""
+The root query type for the Builder.io GraphQL Content API.
+Each content model in your space exposes two fields:
+  - <modelName>   — returns a list of matching content entries
+  - one<ModelName> — returns a single matching content entry
+
+Arguments are shared across all model query fields:
+  query:   MongoDB-style JSON filter object for field-level filtering
+  target:  JSON object for targeting by user attributes (url, device, locale, custom)
+  options: JSON object for additional query options
+  limit:   Maximum number of results to return (list queries only)
+  offset:  Number of results to skip for pagination
+  sort:    JSON object specifying sort field and direction
+"""
+type RootQueryType {
+  # --- Pages and layouts ---
+  page(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [Page]
+  onePage(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): Page
+
+  landingPage(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [LandingPage]
+  oneLandingPage(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): LandingPage
+
+  landingPages(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [LandingPages]
+  oneLandingPages(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): LandingPages
+
+  contentPage(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [ContentPage]
+  oneContentPage(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): ContentPage
+
+  errorPage(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [ErrorPage]
+  oneErrorPage(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): ErrorPage
+
+  errorPageSection(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [ErrorPageSection]
+  oneErrorPageSection(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): ErrorPageSection
+
+  # --- Blog content ---
+  blogArticle(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [BlogArticle]
+  oneBlogArticle(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): BlogArticle
+
+  blogAuthor(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [BlogAuthor]
+  oneBlogAuthor(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): BlogAuthor
+
+  blogHomepageLayout(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [BlogHomepageLayout]
+  oneBlogHomepageLayout(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): BlogHomepageLayout
+
+  blogAuthorsPageLayout(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [BlogAuthorsPageLayout]
+  oneBlogAuthorsPageLayout(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): BlogAuthorsPageLayout
+
+  blogAuthorBioPageLayout(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [BlogAuthorBioPageLayout]
+  oneBlogAuthorBioPageLayout(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): BlogAuthorBioPageLayout
+
+  blogBelowArticle(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [BlogBelowArticle]
+  oneBlogBelowArticle(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): BlogBelowArticle
+
+  blogSidebar(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [BlogSidebar]
+  oneBlogSidebar(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): BlogSidebar
+
+  blogSidebarTargetedCta(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [BlogSidebarTargetedCta]
+  oneBlogSidebarTargetedCta(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): BlogSidebarTargetedCta
+
+  multipleBlogAuthors(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [MultipleBlogAuthors]
+  oneMultipleBlogAuthors(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): MultipleBlogAuthors
+
+  # --- Navigation and layout ---
+  header(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [Header]
+  oneHeader(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): Header
+
+  headerContent(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [HeaderContent]
+  oneHeaderContent(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): HeaderContent
+
+  footer(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [Footer]
+  oneFooter(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): Footer
+
+  navMenus(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [NavMenus]
+  oneNavMenus(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): NavMenus
+
+  menuItem(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [MenuItem]
+  oneMenuItem(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): MenuItem
+
+  docsNav(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [DocsNav]
+  oneDocsNav(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): DocsNav
+
+  docsNavConfig(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [DocsNavConfig]
+  oneDocsNavConfig(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): DocsNavConfig
+
+  docsHeader(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [DocsHeader]
+  oneDocsHeader(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): DocsHeader
+
+  announcementBar(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [AnnouncementBar]
+  oneAnnouncementBar(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): AnnouncementBar
+
+  targetedAnnouncementBar(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [TargetedAnnouncementBar]
+  oneTargetedAnnouncementBar(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): TargetedAnnouncementBar
+
+  # --- Documentation ---
+  docs(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [Docs]
+  oneDocs(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): Docs
+
+  docsContent(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [DocsContent]
+  oneDocsContent(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): DocsContent
+
+  docsContentNonTech(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [DocsContentNonTech]
+  oneDocsContentNonTech(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): DocsContentNonTech
+
+  docsSnippets(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [DocsSnippets]
+  oneDocsSnippets(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): DocsSnippets
+
+  docsRepeatableInstructions(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [DocsRepeatableInstructions]
+  oneDocsRepeatableInstructions(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): DocsRepeatableInstructions
+
+  # --- Symbols and reusable components ---
+  symbol(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [Symbol]
+  oneSymbol(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): Symbol
+
+  component(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [Component]
+  oneComponent(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): Component
+
+  block(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [Block]
+  oneBlock(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): Block
+
+  contentBlock(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [ContentBlock]
+  oneContentBlock(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): ContentBlock
+
+  canvas(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [Canvas]
+  oneCanvas(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): Canvas
+
+  # --- Product and marketplace ---
+  product(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [Product]
+  oneProduct(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): Product
+
+  marketplace(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [Marketplace]
+  oneMarketplace(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): Marketplace
+
+  blueprint(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [Blueprint]
+  oneBlueprint(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): Blueprint
+
+  plugins(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [Plugins]
+  onePlugins(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): Plugins
+
+  # --- Pricing and plans ---
+  pricingTable(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [PricingTable]
+  onePricingTable(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): PricingTable
+
+  pricingPlans(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [PricingPlans]
+  onePricingPlans(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): PricingPlans
+
+  # --- Marketing and resources ---
+  glossary(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [Glossary]
+  oneGlossary(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): Glossary
+
+  marketingGlossary(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [MarketingGlossary]
+  oneMarketingGlossary(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): MarketingGlossary
+
+  marketingGlossaryHomepage(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [MarketingGlossaryHomepage]
+  oneMarketingGlossaryHomepage(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): MarketingGlossaryHomepage
+
+  resources(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [Resources]
+  oneResources(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): Resources
+
+  resourceLayout(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [ResourceLayout]
+  oneResourceLayout(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): ResourceLayout
+
+  resourceItemLayout(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [ResourceItemLayout]
+  oneResourceItemLayout(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): ResourceItemLayout
+
+  news(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [News]
+  oneNews(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): News
+
+  newsPageLayout(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [NewsPageLayout]
+  oneNewsPageLayout(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): NewsPageLayout
+
+  pressArticles(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [PressArticles]
+  onePressArticles(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): PressArticles
+
+  changelog(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [Changelog]
+  oneChangelog(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): Changelog
+
+  productUpdates(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [ProductUpdates]
+  oneProductUpdates(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): ProductUpdates
+
+  # --- Partner and agency content ---
+  agencyPartners(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [AgencyPartners]
+  oneAgencyPartners(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): AgencyPartners
+
+  customerShowcase(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [CustomerShowcase]
+  oneCustomerShowcase(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): CustomerShowcase
+
+  compare(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [Compare]
+  oneCompare(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): Compare
+
+  vendors(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [Vendors]
+  oneVendors(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): Vendors
+
+  # --- Templates and examples ---
+  template(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [Template]
+  oneTemplate(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): Template
+
+  exampleDesignSystem(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [ExampleDesignSystem]
+  oneExampleDesignSystem(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): ExampleDesignSystem
+
+  recipes(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [Recipes]
+  oneRecipes(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): Recipes
+
+  # --- Theming ---
+  theme(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [Theme]
+  oneTheme(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): Theme
+
+  # --- Misc content models ---
+  onboardingContent(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [OnboardingContent]
+  oneOnboardingContent(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): OnboardingContent
+
+  onboardingSteps(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [OnboardingSteps]
+  oneOnboardingSteps(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): OnboardingSteps
+
+  onboardingFlow(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [OnboardingFlow]
+  oneOnboardingFlow(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): OnboardingFlow
+
+  urlRedirects(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [UrlRedirects]
+  oneUrlRedirects(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): UrlRedirects
+
+  experiments(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [Experiments]
+  oneExperiments(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): Experiments
+
+  hub(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [Hub]
+  oneHub(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): Hub
+
+  course(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [Course]
+  oneCourse(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): Course
+
+  file(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [File]
+  oneFile(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): File
+
+  email(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [Email]
+  oneEmail(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): Email
+
+  overlay(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [Overlay]
+  oneOverlay(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): Overlay
+
+  ribbon(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [Ribbon]
+  oneRibbon(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): Ribbon
+
+  storybook(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [Storybook]
+  oneStorybook(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): Storybook
+
+  ampPage(query: JSONObject, target: JSONObject, options: JSONObject, limit: Int, offset: Int, sort: JSONObject): [AmpPage]
+  oneAmpPage(query: JSONObject, target: JSONObject, options: JSONObject, offset: Int, sort: JSONObject): AmpPage
+}
+
+"""
+Content entry base fields shared by all Builder.io content model types.
+Every model type (Page, BlogArticle, Symbol, etc.) includes these fields
+plus a model-specific 'data' object.
+"""
+interface ContentEntry {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  testRatio: Int
+  startDate: Float
+  endDate: Float
+  createdBy: String
+  createdDate: Float
+  lastUpdatedBy: String
+  screenshot: String
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+}
+
+"""
+Targeting/query rule used to match content to users.
+Each entry in the 'query' array defines one targeting rule.
+"""
+type Query {
+  property: String
+  operator: String
+  value: JSON
+}
+
+"""
+A Builder.io Page content entry.
+"""
+type Page {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  testRatio: Int
+  startDate: Float
+  endDate: Float
+  createdBy: String
+  createdDate: Float
+  lastUpdatedBy: String
+  screenshot: String
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: PageData
+}
+
+"""
+Custom fields for the Page content model.
+"""
+type PageData {
+  html: String
+  css: String
+  url: JSON
+  jsCode: String
+  cssCode: String
+  inputs: JSON
+  httpRequests: JSON
+  blocks: JSON
+  customFonts: JSON
+  state: JSON
+  title: String
+  description: String
+  hidden: String
+}
+
+"""
+A Builder.io Blog Article content entry.
+"""
+type BlogArticle {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  testRatio: Int
+  startDate: Float
+  endDate: Float
+  createdBy: String
+  createdDate: Float
+  lastUpdatedBy: String
+  screenshot: String
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: BlogArticleData
+}
+
+"""
+Custom fields for the BlogArticle content model.
+"""
+type BlogArticleData {
+  html: String
+  css: String
+  url: JSON
+  jsCode: String
+  cssCode: String
+  inputs: JSON
+  httpRequests: JSON
+  blocks: JSON
+  customFonts: JSON
+  state: JSON
+  title: String
+  metaTitle: String
+  handle: String
+  blurb: String
+  date: JSON
+  author: JSON
+  image: String
+  readTime: Float
+  tags: JSON
+  topic: String
+  hideImage: Boolean
+  fullPage: Boolean
+  hideFromList: Boolean
+  includeDocsNav: Boolean
+  externalLink: String
+  authors: JSON
+}
+
+"""
+A Builder.io Symbol (reusable component/section) content entry.
+"""
+type Symbol {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  testRatio: Int
+  startDate: Float
+  endDate: Float
+  createdBy: String
+  createdDate: Float
+  lastUpdatedBy: String
+  screenshot: String
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: SymbolData
+}
+
+"""
+Custom fields for the Symbol content model.
+"""
+type SymbolData {
+  html: String
+  css: String
+  url: JSON
+  jsCode: String
+  cssCode: String
+  inputs: JSON
+  httpRequests: JSON
+  blocks: JSON
+  customFonts: JSON
+  state: JSON
+  tags: JSON
+}
+
+"""
+A Builder.io Block content entry.
+"""
+type Block {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  testRatio: Int
+  startDate: Float
+  endDate: Float
+  createdBy: String
+  createdDate: Float
+  lastUpdatedBy: String
+  screenshot: String
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: BlockData
+}
+
+"""
+Custom fields for the Block content model.
+"""
+type BlockData {
+  html: String
+  css: String
+  url: JSON
+  jsCode: String
+  cssCode: String
+  inputs: JSON
+  httpRequests: JSON
+  blocks: JSON
+  customFonts: JSON
+  state: JSON
+}
+
+"""
+A Builder.io Pricing Table content entry.
+"""
+type PricingTable {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  testRatio: Int
+  startDate: Float
+  endDate: Float
+  createdBy: String
+  createdDate: Float
+  lastUpdatedBy: String
+  screenshot: String
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: PricingTableData
+}
+
+type PricingTableData {
+  html: String
+  css: String
+  blocks: JSON
+  state: JSON
+}
+
+"""
+Shared base type for all landing page model entries.
+"""
+type LandingPage {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  testRatio: Int
+  startDate: Float
+  endDate: Float
+  createdBy: String
+  createdDate: Float
+  lastUpdatedBy: String
+  screenshot: String
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: JSONObject
+}
+
+type LandingPages {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  testRatio: Int
+  startDate: Float
+  endDate: Float
+  createdBy: String
+  createdDate: Float
+  lastUpdatedBy: String
+  screenshot: String
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: JSONObject
+}
+
+type BlogAuthor {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  testRatio: Int
+  startDate: Float
+  endDate: Float
+  createdBy: String
+  createdDate: Float
+  lastUpdatedBy: String
+  screenshot: String
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: BlogAuthorData
+}
+
+type BlogAuthorData {
+  html: String
+  css: String
+  blocks: JSON
+  state: JSON
+  name: String
+  image: String
+  bio: String
+  twitter: String
+  linkedin: String
+}
+
+type Header {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: HeaderData
+}
+
+type HeaderData {
+  html: String
+  css: String
+  blocks: JSON
+  state: JSON
+}
+
+type Footer {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: FooterData
+}
+
+type FooterData {
+  html: String
+  css: String
+  blocks: JSON
+  state: JSON
+}
+
+type NavMenus {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: NavMenusData
+}
+
+type NavMenusData {
+  html: String
+  css: String
+  blocks: JSON
+  state: JSON
+}
+
+type MenuItem {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: MenuItemData
+}
+
+type MenuItemData {
+  label: String
+  url: JSON
+  children: JSON
+}
+
+type AnnouncementBar {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: AnnouncementBarData
+}
+
+type AnnouncementBarData {
+  html: String
+  css: String
+  blocks: JSON
+  state: JSON
+}
+
+type TargetedAnnouncementBar {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: TargetedAnnouncementBarData
+}
+
+type TargetedAnnouncementBarData {
+  html: String
+  css: String
+  blocks: JSON
+  state: JSON
+}
+
+type Docs {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: DocsData
+}
+
+type DocsData {
+  html: String
+  css: String
+  blocks: JSON
+  state: JSON
+  title: String
+}
+
+type DocsContent {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: DocsContentData
+}
+
+type DocsContentData {
+  html: String
+  css: String
+  blocks: JSON
+  state: JSON
+  title: String
+}
+
+type DocsContentNonTech {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: DocsContentNonTechData
+}
+
+type DocsContentNonTechData {
+  html: String
+  css: String
+  blocks: JSON
+  state: JSON
+}
+
+type DocsSnippets {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: DocsSnippetsData
+}
+
+type DocsSnippetsData {
+  html: String
+  css: String
+  blocks: JSON
+  state: JSON
+}
+
+type DocsNav {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: DocsNavData
+}
+
+type DocsNavData {
+  html: String
+  css: String
+  blocks: JSON
+  state: JSON
+}
+
+type DocsNavConfig {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: DocsNavConfigData
+}
+
+type DocsNavConfigData {
+  html: String
+  css: String
+  blocks: JSON
+  state: JSON
+}
+
+type DocsHeader {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: DocsHeaderData
+}
+
+type DocsHeaderData {
+  html: String
+  css: String
+  blocks: JSON
+  state: JSON
+}
+
+type DocsRepeatableInstructions {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: DocsRepeatableInstructionsData
+}
+
+type DocsRepeatableInstructionsData {
+  html: String
+  css: String
+  blocks: JSON
+  state: JSON
+}
+
+type Component {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: ComponentData
+}
+
+type ComponentData {
+  html: String
+  css: String
+  blocks: JSON
+  state: JSON
+}
+
+type ContentBlock {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: ContentBlockData
+}
+
+type ContentBlockData {
+  html: String
+  css: String
+  blocks: JSON
+  state: JSON
+}
+
+type Canvas {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: CanvasData
+}
+
+type CanvasData {
+  html: String
+  css: String
+  blocks: JSON
+  state: JSON
+}
+
+type Product {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: ProductData
+}
+
+type ProductData {
+  html: String
+  css: String
+  blocks: JSON
+  state: JSON
+  title: String
+  price: Float
+  image: String
+  description: String
+}
+
+type Marketplace {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: MarketplaceData
+}
+
+type MarketplaceData {
+  html: String
+  css: String
+  blocks: JSON
+  state: JSON
+}
+
+type Blueprint {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: BlueprintData
+}
+
+type BlueprintData {
+  html: String
+  css: String
+  blocks: JSON
+  state: JSON
+}
+
+type Plugins {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: PluginsData
+}
+
+type PluginsData {
+  html: String
+  css: String
+  blocks: JSON
+  state: JSON
+}
+
+type PricingPlans {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: PricingPlansData
+}
+
+type PricingPlansData {
+  html: String
+  css: String
+  blocks: JSON
+  state: JSON
+}
+
+type Glossary {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: GlossaryData
+}
+
+type GlossaryData {
+  html: String
+  css: String
+  blocks: JSON
+  state: JSON
+  term: String
+  definition: String
+}
+
+type MarketingGlossary {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: MarketingGlossaryData
+}
+
+type MarketingGlossaryData {
+  html: String
+  css: String
+  blocks: JSON
+  state: JSON
+  term: String
+  definition: String
+}
+
+type MarketingGlossaryHomepage {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: MarketingGlossaryHomepageData
+}
+
+type MarketingGlossaryHomepageData {
+  html: String
+  css: String
+  blocks: JSON
+  state: JSON
+}
+
+type Resources {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: ResourcesData
+}
+
+type ResourcesData {
+  html: String
+  css: String
+  blocks: JSON
+  state: JSON
+}
+
+type ResourceLayout {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: ResourceLayoutData
+}
+
+type ResourceLayoutData {
+  html: String
+  css: String
+  blocks: JSON
+  state: JSON
+}
+
+type ResourceItemLayout {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: ResourceItemLayoutData
+}
+
+type ResourceItemLayoutData {
+  html: String
+  css: String
+  blocks: JSON
+  state: JSON
+}
+
+type News {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: NewsData
+}
+
+type NewsData {
+  html: String
+  css: String
+  blocks: JSON
+  state: JSON
+  title: String
+  date: JSON
+  source: String
+  url: JSON
+}
+
+type NewsPageLayout {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: NewsPageLayoutData
+}
+
+type NewsPageLayoutData {
+  html: String
+  css: String
+  blocks: JSON
+  state: JSON
+}
+
+type PressArticles {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: PressArticlesData
+}
+
+type PressArticlesData {
+  html: String
+  css: String
+  blocks: JSON
+  state: JSON
+}
+
+type Changelog {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: ChangelogData
+}
+
+type ChangelogData {
+  html: String
+  css: String
+  blocks: JSON
+  state: JSON
+  title: String
+  date: JSON
+}
+
+type ProductUpdates {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: ProductUpdatesData
+}
+
+type ProductUpdatesData {
+  html: String
+  css: String
+  blocks: JSON
+  state: JSON
+}
+
+type AgencyPartners {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: AgencyPartnersData
+}
+
+type AgencyPartnersData {
+  html: String
+  css: String
+  blocks: JSON
+  state: JSON
+}
+
+type CustomerShowcase {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: CustomerShowcaseData
+}
+
+type CustomerShowcaseData {
+  html: String
+  css: String
+  blocks: JSON
+  state: JSON
+}
+
+type Compare {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: CompareData
+}
+
+type CompareData {
+  html: String
+  css: String
+  blocks: JSON
+  state: JSON
+}
+
+type Vendors {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: VendorsData
+}
+
+type VendorsData {
+  html: String
+  css: String
+  blocks: JSON
+  state: JSON
+}
+
+type Template {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: TemplateData
+}
+
+type TemplateData {
+  html: String
+  css: String
+  blocks: JSON
+  state: JSON
+}
+
+type ExampleDesignSystem {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: ExampleDesignSystemData
+}
+
+type ExampleDesignSystemData {
+  html: String
+  css: String
+  blocks: JSON
+  state: JSON
+}
+
+type Recipes {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: RecipesData
+}
+
+type RecipesData {
+  html: String
+  css: String
+  blocks: JSON
+  state: JSON
+}
+
+type Theme {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: ThemeData
+}
+
+type ThemeData {
+  html: String
+  css: String
+  blocks: JSON
+  state: JSON
+  colors: JSON
+  fonts: JSON
+}
+
+type OnboardingContent {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: OnboardingContentData
+}
+
+type OnboardingContentData {
+  html: String
+  css: String
+  blocks: JSON
+  state: JSON
+}
+
+type OnboardingSteps {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: OnboardingStepsData
+}
+
+type OnboardingStepsData {
+  html: String
+  css: String
+  blocks: JSON
+  state: JSON
+}
+
+type OnboardingFlow {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: OnboardingFlowData
+}
+
+type OnboardingFlowData {
+  html: String
+  css: String
+  blocks: JSON
+  state: JSON
+}
+
+type UrlRedirects {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: UrlRedirectsData
+}
+
+type UrlRedirectsData {
+  from: String
+  to: String
+  statusCode: Int
+}
+
+type Experiments {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: ExperimentsData
+}
+
+type ExperimentsData {
+  html: String
+  css: String
+  blocks: JSON
+  state: JSON
+}
+
+type Hub {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: HubData
+}
+
+type HubData {
+  html: String
+  css: String
+  blocks: JSON
+  state: JSON
+}
+
+type Course {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: CourseData
+}
+
+type CourseData {
+  html: String
+  css: String
+  blocks: JSON
+  state: JSON
+  title: String
+  description: String
+}
+
+type File {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: FileData
+}
+
+type FileData {
+  url: JSON
+  mimeType: String
+  size: Float
+  altText: String
+}
+
+type Email {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: EmailData
+}
+
+type EmailData {
+  html: String
+  css: String
+  blocks: JSON
+  state: JSON
+  subject: String
+}
+
+type Overlay {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: OverlayData
+}
+
+type OverlayData {
+  html: String
+  css: String
+  blocks: JSON
+  state: JSON
+}
+
+type Ribbon {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: RibbonData
+}
+
+type RibbonData {
+  html: String
+  css: String
+  blocks: JSON
+  state: JSON
+}
+
+type Storybook {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: StorybookData
+}
+
+type StorybookData {
+  html: String
+  css: String
+  blocks: JSON
+  state: JSON
+}
+
+type AmpPage {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: AmpPageData
+}
+
+type AmpPageData {
+  html: String
+  css: String
+  blocks: JSON
+  state: JSON
+}
+
+type ContentPage {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: ContentPageData
+}
+
+type ContentPageData {
+  html: String
+  css: String
+  blocks: JSON
+  state: JSON
+}
+
+type ErrorPage {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: ErrorPageData
+}
+
+type ErrorPageData {
+  html: String
+  css: String
+  blocks: JSON
+  state: JSON
+}
+
+type ErrorPageSection {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: ErrorPageSectionData
+}
+
+type ErrorPageSectionData {
+  html: String
+  css: String
+  blocks: JSON
+  state: JSON
+}
+
+type BlogHomepageLayout {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: BlogHomepageLayoutData
+}
+
+type BlogHomepageLayoutData {
+  html: String
+  css: String
+  blocks: JSON
+  state: JSON
+}
+
+type BlogAuthorsPageLayout {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: BlogAuthorsPageLayoutData
+}
+
+type BlogAuthorsPageLayoutData {
+  html: String
+  css: String
+  blocks: JSON
+  state: JSON
+}
+
+type BlogAuthorBioPageLayout {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: BlogAuthorBioPageLayoutData
+}
+
+type BlogAuthorBioPageLayoutData {
+  html: String
+  css: String
+  blocks: JSON
+  state: JSON
+}
+
+type BlogBelowArticle {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: BlogBelowArticleData
+}
+
+type BlogBelowArticleData {
+  html: String
+  css: String
+  blocks: JSON
+  state: JSON
+}
+
+type BlogSidebar {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: BlogSidebarData
+}
+
+type BlogSidebarData {
+  html: String
+  css: String
+  blocks: JSON
+  state: JSON
+}
+
+type BlogSidebarTargetedCta {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: BlogSidebarTargetedCtaData
+}
+
+type BlogSidebarTargetedCtaData {
+  html: String
+  css: String
+  blocks: JSON
+  state: JSON
+}
+
+type MultipleBlogAuthors {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: MultipleBlogAuthorsData
+}
+
+type MultipleBlogAuthorsData {
+  html: String
+  css: String
+  blocks: JSON
+  state: JSON
+}
+
+type HeaderContent {
+  id: ID
+  name: ID
+  ownerId: ID
+  modelId: String
+  published: String
+  lastUpdated: Float
+  query: [Query]
+  variations: JSONObject
+  content: JSONObject
+  everything: JSONObject
+  data: HeaderContentData
+}
+
+type HeaderContentData {
+  html: String
+  css: String
+  blocks: JSON
+  state: JSON
+}
