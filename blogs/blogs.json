@@ -2,13 +2,20 @@
   "repo": "builder-io",
   "feeds": [
     {
-      "source": "https://www.builder.io/blog",
+      "source": "https://www.builder.io/blog/feed/xml",
       "feed_url": "https://www.builder.io/blog/feed/xml",
-      "title": "Builder.io Blog",
+      "title": "",
+      "saved": 1,
+      "method": "feed"
+    },
+    {
+      "source": "https://twitter.com/builderio",
+      "feed_url": "https://twitter.com/builderio",
+      "title": "",
       "saved": 0,
-      "method": "rss"
+      "method": "none"
     }
   ],
-  "post_count": 0,
-  "fetched": "2026-06-12T00:00:00Z"
+  "post_count": 1,
+  "fetched": "2026-06-14T20:42:17Z"
 }
