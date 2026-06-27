@@ -141,7 +141,7 @@ common:
   url: rate-limits/builder-io-rate-limits.yml
 - type: FinOps
   url: finops/builder-io-finops.yml
-- type: BlogFeeds
+- type: BlogFeed
   url: blogs/blogs.json
 - type: JSONLDContext
   url: json-ld/builder-io-context.jsonld
