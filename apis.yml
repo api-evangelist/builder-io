@@ -119,6 +119,10 @@ apis:
   - type: Documentation
     url: https://www.builder.io/c/docs/api-intro
 common:
+- type: DomainSecurity
+  url: security/builder-io-domain-security.yml
+- type: Authentication
+  url: authentication/builder-io-authentication.yml
 - type: Website
   url: https://www.builder.io
 - type: Documentation

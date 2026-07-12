@@ -1,0 +1,16 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/builder-io-content-api-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - query
+schemes:
+- name: apiKeyQuery
+  type: apiKey
+  in: query
+  parameter: apiKey
+  description: Public API key for your Builder.io space.
+  sources:
+  - openapi/builder-io-content-api-openapi.yml
