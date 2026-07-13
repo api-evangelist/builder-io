@@ -2,13 +2,14 @@
   "repo": "builder-io",
   "feeds": [
     {
-      "source": "https://www.builder.io/blog",
-      "feed_url": "",
-      "saved": 2,
-      "method": "agent-scrape"
+      "source": "https://twitter.com/builderio",
+      "feed_url": "https://twitter.com/builderio",
+      "title": "",
+      "saved": 0,
+      "method": "none"
     }
   ],
-  "post_count": 5,
-  "fetched": "2026-06-27T12:29:57Z",
-  "agent_pulled": "2026-06-27"
+  "post_count": 6,
+  "fetched": "2026-07-11T11:50:51Z",
+  "agent_pulled": "2026-07-04"
 }
