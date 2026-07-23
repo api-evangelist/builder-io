@@ -2,11 +2,7 @@ openapi: 3.0.3
 info:
   title: Builder.io Content API
   version: v3
-  description: >-
-    REST API for retrieving published content from Builder.io models. Supports
-    filtering via MongoDB-style queries, targeting by user attributes, locale,
-    and URL path. Returns paginated JSON results with support for enriched
-    references and nested content symbols.
+  description: REST API for retrieving published content from Builder.io models. Supports filtering via MongoDB-style queries, targeting by user attributes, locale, and URL path. Returns paginated JSON results with support for enriched references and nested content symbols.
   contact:
     name: Builder.io Support
     url: https://www.builder.io/c/docs/content-api
@@ -14,124 +10,106 @@ info:
   license:
     name: Proprietary
     url: https://www.builder.io/m/legal/privacy-policy
-
 servers:
-  - url: https://cdn.builder.io/api/v3
-    description: Builder.io CDN API
-
+- url: https://cdn.builder.io/api/v3
+  description: Builder.io CDN API
 security:
-  - apiKeyQuery: []
-
+- apiKeyQuery: []
 tags:
-  - name: Content
-    description: Retrieve and query published content entries from Builder.io models.
-
+- name: Content
+  description: Retrieve and query published content entries from Builder.io models.
 paths:
   /content/{model}:
     get:
       operationId: getContent
       summary: Query content entries by model
-      description: >-
-        Retrieves published content entries for a given model name. Supports
-        MongoDB-style query filters, user attribute targeting, locale,
-        pagination, and field selection. Results are sorted by priority
-        by default.
+      description: Retrieves published content entries for a given model name. Supports MongoDB-style query filters, user attribute targeting, locale, pagination, and field selection. Results are sorted by priority by default.
       tags:
-        - Content
+      - Content
       parameters:
-        - name: model
-          in: path
-          required: true
-          description: The name of the Builder.io content model to query.
-          schema:
-            type: string
-          example: page
-        - name: apiKey
-          in: query
-          required: true
-          description: Your public Builder.io API key.
-          schema:
-            type: string
-          example: YOUR_PUBLIC_API_KEY
-        - name: limit
-          in: query
-          required: false
-          description: Maximum number of results to return. Maximum value is 100.
-          schema:
-            type: integer
-            minimum: 1
-            maximum: 100
-            default: 10
-        - name: offset
-          in: query
-          required: false
-          description: Number of results to skip for pagination.
-          schema:
-            type: integer
-            minimum: 0
-            default: 0
-        - name: query
-          in: query
-          required: false
-          description: >-
-            MongoDB-style JSON query filter applied to content fields.
-            Example: {"data.slug":{"$eq":"my-page"}}
-          schema:
-            type: string
-        - name: userAttributes
-          in: query
-          required: false
-          description: >-
-            JSON object of user attributes used for targeting and personalization.
-            Example: {"urlPath":"/about","country":"US"}
-          schema:
-            type: string
-        - name: url
-          in: query
-          required: false
-          description: >-
-            The current page URL used for targeting by urlPath. Used as a
-            shorthand for setting userAttributes.urlPath.
-          schema:
-            type: string
-            format: uri
-        - name: locale
-          in: query
-          required: false
-          description: The locale code for localized content retrieval (e.g., "en-US").
-          schema:
-            type: string
-        - name: enrich
-          in: query
-          required: false
-          description: >-
-            When true, enriches references and Symbol blocks with their
-            full content data instead of returning only IDs.
-          schema:
-            type: boolean
-            default: false
-        - name: fields
-          in: query
-          required: false
-          description: >-
-            Comma-separated list of fields to include in the response.
-            Reduces payload size by returning only specified fields.
-          schema:
-            type: string
-          example: id,name,data
-        - name: includeRefs
-          in: query
-          required: false
-          description: When true, includes referenced content objects inline.
-          schema:
-            type: boolean
-            default: false
-        - name: cacheSeconds
-          in: query
-          required: false
-          description: Override the CDN cache duration in seconds.
-          schema:
-            type: integer
+      - name: model
+        in: path
+        required: true
+        description: The name of the Builder.io content model to query.
+        schema:
+          type: string
+        example: page
+      - name: apiKey
+        in: query
+        required: true
+        description: Your public Builder.io API key.
+        schema:
+          type: string
+        example: YOUR_PUBLIC_API_KEY
+      - name: limit
+        in: query
+        required: false
+        description: Maximum number of results to return. Maximum value is 100.
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 10
+      - name: offset
+        in: query
+        required: false
+        description: Number of results to skip for pagination.
+        schema:
+          type: integer
+          minimum: 0
+          default: 0
+      - name: query
+        in: query
+        required: false
+        description: 'MongoDB-style JSON query filter applied to content fields. Example: {"data.slug":{"$eq":"my-page"}}'
+        schema:
+          type: string
+      - name: userAttributes
+        in: query
+        required: false
+        description: 'JSON object of user attributes used for targeting and personalization. Example: {"urlPath":"/about","country":"US"}'
+        schema:
+          type: string
+      - name: url
+        in: query
+        required: false
+        description: The current page URL used for targeting by urlPath. Used as a shorthand for setting userAttributes.urlPath.
+        schema:
+          type: string
+          format: uri
+      - name: locale
+        in: query
+        required: false
+        description: The locale code for localized content retrieval (e.g., "en-US").
+        schema:
+          type: string
+      - name: enrich
+        in: query
+        required: false
+        description: When true, enriches references and Symbol blocks with their full content data instead of returning only IDs.
+        schema:
+          type: boolean
+          default: false
+      - name: fields
+        in: query
+        required: false
+        description: Comma-separated list of fields to include in the response. Reduces payload size by returning only specified fields.
+        schema:
+          type: string
+        example: id,name,data
+      - name: includeRefs
+        in: query
+        required: false
+        description: When true, includes referenced content objects inline.
+        schema:
+          type: boolean
+          default: false
+      - name: cacheSeconds
+        in: query
+        required: false
+        description: Override the CDN cache duration in seconds.
+        schema:
+          type: integer
       responses:
         '200':
           description: A paginated list of content entries matching the query.
@@ -141,17 +119,17 @@ paths:
                 $ref: '#/components/schemas/ContentListResponse'
               example:
                 results:
-                  - id: abc123def456
-                    name: Home Page
-                    published: published
-                    modelId: page
-                    priority: 0
-                    firstPublished: 1700000000000
-                    lastUpdated: 1717000000000
-                    data:
-                      title: Welcome to Our Site
-                      description: The home page of our website.
-                      blocks: []
+                - id: abc123def456
+                  name: Home Page
+                  published: published
+                  modelId: page
+                  priority: 0
+                  firstPublished: 1700000000000
+                  lastUpdated: 1717000000000
+                  data:
+                    title: Welcome to Our Site
+                    description: The home page of our website.
+                    blocks: []
         '400':
           description: Bad request — invalid query parameters or missing apiKey.
           content:
@@ -164,43 +142,41 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-
   /content/{model}/{id}:
     get:
       operationId: getContentById
       summary: Get a single content entry by ID
-      description: >-
-        Retrieves a single content entry from a Builder.io model by its unique ID.
+      description: Retrieves a single content entry from a Builder.io model by its unique ID.
       tags:
-        - Content
+      - Content
       parameters:
-        - name: model
-          in: path
-          required: true
-          description: The name of the Builder.io content model.
-          schema:
-            type: string
-          example: page
-        - name: id
-          in: path
-          required: true
-          description: The unique ID of the content entry.
-          schema:
-            type: string
-          example: abc123def456abc123def456abc12345
-        - name: apiKey
-          in: query
-          required: true
-          description: Your public Builder.io API key.
-          schema:
-            type: string
-        - name: enrich
-          in: query
-          required: false
-          description: When true, enriches referenced content inline.
-          schema:
-            type: boolean
-            default: false
+      - name: model
+        in: path
+        required: true
+        description: The name of the Builder.io content model.
+        schema:
+          type: string
+        example: page
+      - name: id
+        in: path
+        required: true
+        description: The unique ID of the content entry.
+        schema:
+          type: string
+        example: abc123def456abc123def456abc12345
+      - name: apiKey
+        in: query
+        required: true
+        description: Your public Builder.io API key.
+        schema:
+          type: string
+      - name: enrich
+        in: query
+        required: false
+        description: When true, enriches referenced content inline.
+        schema:
+          type: boolean
+          default: false
       responses:
         '200':
           description: The content entry matching the given ID.
@@ -214,134 +190,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-
 components:
-  securitySchemes:
-    apiKeyQuery:
-      type: apiKey
-      in: query
-      name: apiKey
-      description: Public API key for your Builder.io space.
-
   schemas:
-    ContentListResponse:
-      type: object
-      description: Paginated list of content entries.
-      properties:
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/ContentEntry'
-      required:
-        - results
-
-    ContentEntry:
-      type: object
-      description: >-
-        A single published content entry from a Builder.io model.
-      properties:
-        '@version':
-          type: integer
-          description: Schema version of the content entry.
-          example: 2
-        id:
-          type: string
-          description: Unique identifier for the content entry.
-          example: abc123def456abc123def456abc12345
-        name:
-          type: string
-          description: Human-readable name of the content entry.
-          example: Home Page
-        published:
-          type: string
-          enum:
-            - published
-            - draft
-            - archived
-          description: Publication status of the content entry.
-          example: published
-        modelId:
-          type: string
-          description: The model type identifier for this content.
-          example: page
-        priority:
-          type: number
-          description: Sort priority used when multiple entries match a query.
-          example: 0
-        firstPublished:
-          type: integer
-          description: Unix timestamp (milliseconds) when first published.
-          example: 1700000000000
-        lastUpdated:
-          type: integer
-          description: Unix timestamp (milliseconds) of the last update.
-          example: 1717000000000
-        startDate:
-          type: integer
-          description: >-
-            Unix timestamp (milliseconds) after which the entry becomes active.
-            Used for scheduled publishing.
-          example: 1717000000000
-        endDate:
-          type: integer
-          description: >-
-            Unix timestamp (milliseconds) after which the entry is no longer served.
-          example: 1719600000000
-        variations:
-          type: object
-          description: >-
-            Map of variation IDs to variation data for A/B testing.
-          additionalProperties:
-            $ref: '#/components/schemas/ContentVariation'
-        testVariationId:
-          type: string
-          description: ID of the winning or current test variation.
-        testVariationName:
-          type: string
-          description: Name of the current test variation.
-        data:
-          type: object
-          description: >-
-            The model-specific field data for this content entry. Structure
-            varies by model definition.
-          additionalProperties: true
-          properties:
-            blocks:
-              type: array
-              description: Array of Builder visual editor block elements.
-              items:
-                $ref: '#/components/schemas/BuilderElement'
-            title:
-              type: string
-              description: Page or content title field.
-            url:
-              type: string
-              description: URL path associated with this content entry.
-
-    ContentVariation:
-      type: object
-      description: A/B test variation data attached to a content entry.
-      properties:
-        id:
-          type: string
-          description: Unique ID of this variation.
-        name:
-          type: string
-          description: Name of this variation.
-        testRatio:
-          type: number
-          description: Traffic percentage (0–1) allocated to this variation.
-          minimum: 0
-          maximum: 1
-        data:
-          type: object
-          description: Override data for this variation.
-          additionalProperties: true
-
     BuilderElement:
       type: object
-      description: >-
-        A visual element node in the Builder.io page tree.
+      description: A visual element node in the Builder.io page tree.
       properties:
         '@type':
           type: string
@@ -423,7 +276,16 @@ components:
             itemName:
               type: string
               description: Variable name for each item in the collection.
-
+    ContentListResponse:
+      type: object
+      description: Paginated list of content entries.
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContentEntry'
+      required:
+      - results
     ErrorResponse:
       type: object
       description: Standard error response body.
@@ -436,3 +298,103 @@ components:
           type: integer
           description: HTTP status code.
           example: 401
+    ContentVariation:
+      type: object
+      description: A/B test variation data attached to a content entry.
+      properties:
+        id:
+          type: string
+          description: Unique ID of this variation.
+        name:
+          type: string
+          description: Name of this variation.
+        testRatio:
+          type: number
+          description: Traffic percentage (0–1) allocated to this variation.
+          minimum: 0
+          maximum: 1
+        data:
+          type: object
+          description: Override data for this variation.
+          additionalProperties: true
+    ContentEntry:
+      type: object
+      description: A single published content entry from a Builder.io model.
+      properties:
+        '@version':
+          type: integer
+          description: Schema version of the content entry.
+          example: 2
+        id:
+          type: string
+          description: Unique identifier for the content entry.
+          example: abc123def456abc123def456abc12345
+        name:
+          type: string
+          description: Human-readable name of the content entry.
+          example: Home Page
+        published:
+          type: string
+          enum:
+          - published
+          - draft
+          - archived
+          description: Publication status of the content entry.
+          example: published
+        modelId:
+          type: string
+          description: The model type identifier for this content.
+          example: page
+        priority:
+          type: number
+          description: Sort priority used when multiple entries match a query.
+          example: 0
+        firstPublished:
+          type: integer
+          description: Unix timestamp (milliseconds) when first published.
+          example: 1700000000000
+        lastUpdated:
+          type: integer
+          description: Unix timestamp (milliseconds) of the last update.
+          example: 1717000000000
+        startDate:
+          type: integer
+          description: Unix timestamp (milliseconds) after which the entry becomes active. Used for scheduled publishing.
+          example: 1717000000000
+        endDate:
+          type: integer
+          description: Unix timestamp (milliseconds) after which the entry is no longer served.
+          example: 1719600000000
+        variations:
+          type: object
+          description: Map of variation IDs to variation data for A/B testing.
+          additionalProperties:
+            $ref: '#/components/schemas/ContentVariation'
+        testVariationId:
+          type: string
+          description: ID of the winning or current test variation.
+        testVariationName:
+          type: string
+          description: Name of the current test variation.
+        data:
+          type: object
+          description: The model-specific field data for this content entry. Structure varies by model definition.
+          additionalProperties: true
+          properties:
+            blocks:
+              type: array
+              description: Array of Builder visual editor block elements.
+              items:
+                $ref: '#/components/schemas/BuilderElement'
+            title:
+              type: string
+              description: Page or content title field.
+            url:
+              type: string
+              description: URL path associated with this content entry.
+  securitySchemes:
+    apiKeyQuery:
+      type: apiKey
+      in: query
+      name: apiKey
+      description: Public API key for your Builder.io space.
