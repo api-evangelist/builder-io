@@ -10,7 +10,20 @@ description: Builder.io is a visual development platform and headless CMS that e
   Vue, Svelte, Qwik, Angular, and other frameworks through official SDKs, and connects
   to Git-based workflows via GitHub, GitLab, and Bitbucket.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: true
+  try_now: true
+  public: false
+  label: Freemium (free trial) · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/builder-io.png
 tags:
 - Headless CMS
 - Visual Development
