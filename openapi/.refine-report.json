@@ -1,0 +1,14 @@
+{
+  "provider": "builder-io",
+  "sources": [
+    "builder-io-content-api-openapi.yml"
+  ],
+  "outputs": [
+    "builder-io-content-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
