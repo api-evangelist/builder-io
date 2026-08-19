@@ -1,0 +1,148 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Builder.io Content API",
+    "version": "v3"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "apiKey",
+      "value": "{{apiKey}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Content",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Query content entries by model",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cdn.builder.io/api/v3/content/:model",
+            "params": [
+              {
+                "name": "model",
+                "value": "page",
+                "type": "path",
+                "description": "The name of the Builder.io content model to query."
+              },
+              {
+                "name": "apiKey",
+                "value": "YOUR_PUBLIC_API_KEY",
+                "type": "query",
+                "description": "Your public Builder.io API key."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return. Maximum value is 100."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to skip for pagination."
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "MongoDB-style JSON query filter applied to content fields. Example: {\"data.slug\":{\"$eq\":\"my-page\"}}"
+              },
+              {
+                "name": "userAttributes",
+                "value": "",
+                "type": "query",
+                "description": "JSON object of user attributes used for targeting and personalization. Example: {\"urlPath\":\"/about\",\"country\":\"US\"}"
+              },
+              {
+                "name": "url",
+                "value": "",
+                "type": "query",
+                "description": "The current page URL used for targeting by urlPath. Used as a shorthand for setting userAttributes.urlPath."
+              },
+              {
+                "name": "locale",
+                "value": "",
+                "type": "query",
+                "description": "The locale code for localized content retrieval (e.g., \"en-US\")."
+              },
+              {
+                "name": "enrich",
+                "value": "",
+                "type": "query",
+                "description": "When true, enriches references and Symbol blocks with their full content data instead of returning only IDs."
+              },
+              {
+                "name": "fields",
+                "value": "id,name,data",
+                "type": "query",
+                "description": "Comma-separated list of fields to include in the response. Reduces payload size by returning only specified fields."
+              },
+              {
+                "name": "includeRefs",
+                "value": "",
+                "type": "query",
+                "description": "When true, includes referenced content objects inline."
+              },
+              {
+                "name": "cacheSeconds",
+                "value": "",
+                "type": "query",
+                "description": "Override the CDN cache duration in seconds."
+              }
+            ]
+          },
+          "docs": "Retrieves published content entries for a given model name. Supports MongoDB-style query filters, user attribute targeting, locale, pagination, and field selection. Results are sorted by priority by default."
+        },
+        {
+          "info": {
+            "name": "Get a single content entry by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cdn.builder.io/api/v3/content/:model/:id",
+            "params": [
+              {
+                "name": "model",
+                "value": "page",
+                "type": "path",
+                "description": "The name of the Builder.io content model."
+              },
+              {
+                "name": "id",
+                "value": "abc123def456abc123def456abc12345",
+                "type": "path",
+                "description": "The unique ID of the content entry."
+              },
+              {
+                "name": "apiKey",
+                "value": "",
+                "type": "query",
+                "description": "Your public Builder.io API key."
+              },
+              {
+                "name": "enrich",
+                "value": "",
+                "type": "query",
+                "description": "When true, enriches referenced content inline."
+              }
+            ]
+          },
+          "docs": "Retrieves a single content entry from a Builder.io model by its unique ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

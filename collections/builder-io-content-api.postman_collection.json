@@ -1,0 +1,634 @@
+{
+  "item": [
+    {
+      "id": "dc55f78e-6a34-401b-aeba-1909c9dfcab1",
+      "name": "Content",
+      "description": {
+        "content": "Retrieve and query published content entries from Builder.io models.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6c7b82de-f7e5-4f58-aa58-7f53b99cdc0c",
+          "name": "Query content entries by model",
+          "request": {
+            "name": "Query content entries by model",
+            "description": {
+              "content": "Retrieves published content entries for a given model name. Supports MongoDB-style query filters, user attribute targeting, locale, pagination, and field selection. Results are sorted by priority by default.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "content",
+                ":model"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "apiKey",
+                  "value": "<string>",
+                  "description": "(Required) Your public Builder.io API key."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Maximum number of results to return. Maximum value is 100."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Number of results to skip for pagination."
+                },
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "<string>",
+                  "description": "MongoDB-style JSON query filter applied to content fields. Example: {\"data.slug\":{\"$eq\":\"my-page\"}}"
+                },
+                {
+                  "disabled": false,
+                  "key": "userAttributes",
+                  "value": "<string>",
+                  "description": "JSON object of user attributes used for targeting and personalization. Example: {\"urlPath\":\"/about\",\"country\":\"US\"}"
+                },
+                {
+                  "disabled": false,
+                  "key": "url",
+                  "value": "<uri>",
+                  "description": "The current page URL used for targeting by urlPath. Used as a shorthand for setting userAttributes.urlPath."
+                },
+                {
+                  "disabled": false,
+                  "key": "locale",
+                  "value": "<string>",
+                  "description": "The locale code for localized content retrieval (e.g., \"en-US\")."
+                },
+                {
+                  "disabled": false,
+                  "key": "enrich",
+                  "value": "false",
+                  "description": "When true, enriches references and Symbol blocks with their full content data instead of returning only IDs."
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to include in the response. Reduces payload size by returning only specified fields."
+                },
+                {
+                  "disabled": false,
+                  "key": "includeRefs",
+                  "value": "false",
+                  "description": "When true, includes referenced content objects inline."
+                },
+                {
+                  "disabled": false,
+                  "key": "cacheSeconds",
+                  "value": "<integer>",
+                  "description": "Override the CDN cache duration in seconds."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "model",
+                  "description": "(Required) The name of the Builder.io content model to query."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7bb91592-9859-4ae9-ac68-a808e81c6aee",
+              "name": "A paginated list of content entries matching the query.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "content",
+                    ":model"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apiKey",
+                      "value": "YOUR_PUBLIC_API_KEY"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "userAttributes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "url",
+                      "value": "<uri>"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "enrich",
+                      "value": "false"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "id,name,data"
+                    },
+                    {
+                      "key": "includeRefs",
+                      "value": "false"
+                    },
+                    {
+                      "key": "cacheSeconds",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "apiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "model",
+                      "description": "(Required) The name of the Builder.io content model to query."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"id\": \"abc123def456\",\n      \"name\": \"Home Page\",\n      \"published\": \"published\",\n      \"modelId\": \"page\",\n      \"priority\": 0,\n      \"firstPublished\": 1700000000000,\n      \"lastUpdated\": 1717000000000,\n      \"data\": {\n        \"title\": \"Welcome to Our Site\",\n        \"description\": \"The home page of our website.\",\n        \"blocks\": []\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "72494b85-a49a-4109-969f-ce36de0cf443",
+              "name": "Bad request — invalid query parameters or missing apiKey.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "content",
+                    ":model"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apiKey",
+                      "value": "YOUR_PUBLIC_API_KEY"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "userAttributes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "url",
+                      "value": "<uri>"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "enrich",
+                      "value": "false"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "id,name,data"
+                    },
+                    {
+                      "key": "includeRefs",
+                      "value": "false"
+                    },
+                    {
+                      "key": "cacheSeconds",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "apiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "model",
+                      "description": "(Required) The name of the Builder.io content model to query."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Unauthorized\",\n  \"statusCode\": 401\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a1d961ef-086e-44b8-9a01-4edfdbfeb164",
+              "name": "Unauthorized — invalid or missing API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "content",
+                    ":model"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apiKey",
+                      "value": "YOUR_PUBLIC_API_KEY"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "userAttributes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "url",
+                      "value": "<uri>"
+                    },
+                    {
+                      "key": "locale",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "enrich",
+                      "value": "false"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "id,name,data"
+                    },
+                    {
+                      "key": "includeRefs",
+                      "value": "false"
+                    },
+                    {
+                      "key": "cacheSeconds",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "apiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "model",
+                      "description": "(Required) The name of the Builder.io content model to query."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Unauthorized\",\n  \"statusCode\": 401\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6a9ed9de-c0a3-47fc-8695-6751ab8b0ae2",
+          "name": "Get a single content entry by ID",
+          "request": {
+            "name": "Get a single content entry by ID",
+            "description": {
+              "content": "Retrieves a single content entry from a Builder.io model by its unique ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "content",
+                ":model",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "apiKey",
+                  "value": "<string>",
+                  "description": "(Required) Your public Builder.io API key."
+                },
+                {
+                  "disabled": false,
+                  "key": "enrich",
+                  "value": "false",
+                  "description": "When true, enriches referenced content inline."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "model",
+                  "description": "(Required) The name of the Builder.io content model."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The unique ID of the content entry."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "174a0b4f-bb5c-47c1-8ed7-a5493d517c1b",
+              "name": "The content entry matching the given ID.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "content",
+                    ":model",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apiKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "enrich",
+                      "value": "false"
+                    },
+                    {
+                      "key": "apiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "model",
+                      "description": "(Required) The name of the Builder.io content model."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique ID of the content entry."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@version\": 2,\n  \"id\": \"abc123def456abc123def456abc12345\",\n  \"name\": \"Home Page\",\n  \"published\": \"published\",\n  \"modelId\": \"page\",\n  \"priority\": 0,\n  \"firstPublished\": 1700000000000,\n  \"lastUpdated\": 1717000000000,\n  \"startDate\": 1717000000000,\n  \"endDate\": 1719600000000,\n  \"variations\": {\n    \"key_0\": {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"testRatio\": 0.6457528089417403,\n      \"data\": {\n        \"key_0\": \"string\",\n        \"key_1\": 1040,\n        \"key_2\": 5342\n      }\n    },\n    \"key_1\": {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"testRatio\": 0.9580501245120201,\n      \"data\": {\n        \"key_0\": 1137,\n        \"key_1\": 548\n      }\n    },\n    \"key_2\": {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"testRatio\": 0.4229813210566994,\n      \"data\": {\n        \"key_0\": 5942.850412451699,\n        \"key_1\": false\n      }\n    }\n  },\n  \"testVariationId\": \"string\",\n  \"testVariationName\": \"string\",\n  \"data\": {\n    \"blocks\": [\n      {\n        \"@type\": \"@builder.io/sdk:Element\",\n        \"@version\": 1184,\n        \"id\": \"string\",\n        \"tagName\": \"div\",\n        \"layerName\": \"string\",\n        \"children\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/BuilderElement detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/BuilderElement detected>\"\n          }\n        ],\n        \"component\": {\n          \"name\": \"Hero\",\n          \"options\": {\n            \"key_0\": 6178,\n            \"key_1\": 7289\n          }\n        },\n        \"responsiveStyles\": {\n          \"large\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\",\n            \"key_2\": \"string\",\n            \"key_3\": \"string\"\n          },\n          \"medium\": {\n            \"key_0\": \"string\"\n          },\n          \"small\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\"\n          },\n          \"xsmall\": {\n            \"key_0\": \"string\"\n          }\n        },\n        \"bindings\": {\n          \"key_0\": \"string\"\n        },\n        \"properties\": {\n          \"key_0\": \"string\"\n        },\n        \"actions\": {\n          \"key_0\": \"string\"\n        },\n        \"repeat\": {\n          \"collection\": \"string\",\n          \"itemName\": \"string\"\n        }\n      },\n      {\n        \"@type\": \"@builder.io/sdk:Element\",\n        \"@version\": 6204,\n        \"id\": \"string\",\n        \"tagName\": \"div\",\n        \"layerName\": \"string\",\n        \"children\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/BuilderElement detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/BuilderElement detected>\"\n          }\n        ],\n        \"component\": {\n          \"name\": \"Hero\",\n          \"options\": {\n            \"key_0\": \"string\",\n            \"key_1\": 6423,\n            \"key_2\": 6730\n          }\n        },\n        \"responsiveStyles\": {\n          \"large\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\",\n            \"key_2\": \"string\"\n          },\n          \"medium\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\"\n          },\n          \"small\": {\n            \"key_0\": \"string\"\n          },\n          \"xsmall\": {\n            \"key_0\": \"string\"\n          }\n        },\n        \"bindings\": {\n          \"key_0\": \"string\"\n        },\n        \"properties\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"actions\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"repeat\": {\n          \"collection\": \"string\",\n          \"itemName\": \"string\"\n        }\n      }\n    ],\n    \"title\": \"string\",\n    \"url\": \"string\",\n    \"key_0\": 1771.0534303395632,\n    \"key_1\": 7874.824929405335,\n    \"key_2\": 2328\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a0010fa2-f0d4-4321-b0b9-1403f5f391b5",
+              "name": "Content entry not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "content",
+                    ":model",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "apiKey",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "enrich",
+                      "value": "false"
+                    },
+                    {
+                      "key": "apiKey",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "model",
+                      "description": "(Required) The name of the Builder.io content model."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique ID of the content entry."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Unauthorized\",\n  \"statusCode\": 401\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://cdn.builder.io/api/v3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "apiKey"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f053695e-912a-41b9-b24d-84badcebe840",
+    "name": "Builder.io Content API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for retrieving published content from Builder.io models. Supports filtering via MongoDB-style queries, targeting by user attributes, locale, and URL path. Returns paginated JSON results with support for enriched references and nested content symbols.\n\nContact Support:\n Name: Builder.io Support",
+      "type": "text/plain"
+    }
+  }
+}
