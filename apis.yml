@@ -36,7 +36,7 @@ tags:
 url: https://raw.githubusercontent.com/api-evangelist/builder-io/refs/heads/main/apis.yml
 created: '2026-06-12'
 modified: '2026-06-12'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: builder-io:content-api
   name: Builder.io Content API
