@@ -99,6 +99,9 @@ apis:
   tags:
   - Content Management
   - REST
+  tags_raw:
+  - Content Management
+  - REST
   - Write
   properties:
   - type: Documentation
@@ -125,6 +128,10 @@ apis:
   humanURL: https://www.builder.io/c/docs/api-intro
   baseURL: https://cdn.builder.io
   tags:
+  - Image
+  - Media
+  - CDN
+  tags_raw:
   - Images
   - Media
   - CDN
