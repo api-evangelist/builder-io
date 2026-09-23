@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Builder.io Content API
   version: v3
@@ -266,9 +266,10 @@ components:
           additionalProperties:
             type: string
         repeat:
-          type: object
+          type:
+          - object
+          - 'null'
           description: List repeat configuration for rendering collections.
-          nullable: true
           properties:
             collection:
               type: string
@@ -286,18 +287,6 @@ components:
             $ref: '#/components/schemas/ContentEntry'
       required:
       - results
-    ErrorResponse:
-      type: object
-      description: Standard error response body.
-      properties:
-        error:
-          type: string
-          description: Error message describing what went wrong.
-          example: Unauthorized
-        statusCode:
-          type: integer
-          description: HTTP status code.
-          example: 401
     ContentVariation:
       type: object
       description: A/B test variation data attached to a content entry.
@@ -392,6 +381,18 @@ components:
             url:
               type: string
               description: URL path associated with this content entry.
+    ErrorResponse:
+      type: object
+      description: Standard error response body.
+      properties:
+        error:
+          type: string
+          description: Error message describing what went wrong.
+          example: Unauthorized
+        statusCode:
+          type: integer
+          description: HTTP status code.
+          example: 401
   securitySchemes:
     apiKeyQuery:
       type: apiKey

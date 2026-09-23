@@ -1,0 +1,1 @@
+{"resource":"https://mcp.builder.io/mcp/publish","authorization_servers":["https://mcp.builder.io"],"scopes_supported":["mcp:publish:read","mcp:publish:write","builder:assets:write","builder:assets:read"],"bearer_methods_supported":["header"]}

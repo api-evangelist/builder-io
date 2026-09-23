@@ -1,0 +1,29 @@
+# Front Door AI Index — builder-io — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: builder-io
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: www.builder.io
+  final_host: www.builder.io
+  ownership: own
+  owner: builder-io
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 7
+  host_score: 7
+  density: 7.16
+  words: 977
+  tiers:
+    agentic: 3
+    core: 4
+    model: 0
+  ambiguous: 2
+  top_terms:
+    AI: 4
+    agent: 2
+    MCP: 1
+    agentic: 1
+    prompts: 1
