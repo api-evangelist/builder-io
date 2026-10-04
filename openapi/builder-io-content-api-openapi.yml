@@ -192,35 +192,6 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    ContentVariation:
-      type: object
-      description: A/B test variation data attached to a content entry.
-      properties:
-        id:
-          type: string
-          description: Unique ID of this variation.
-        name:
-          type: string
-          description: Name of this variation.
-        testRatio:
-          type: number
-          description: Traffic percentage (0–1) allocated to this variation.
-          minimum: 0
-          maximum: 1
-        data:
-          type: object
-          description: Override data for this variation.
-          additionalProperties: true
-    ContentListResponse:
-      type: object
-      description: Paginated list of content entries.
-      properties:
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/ContentEntry'
-      required:
-      - results
     BuilderElement:
       type: object
       description: A visual element node in the Builder.io page tree.
@@ -306,6 +277,16 @@ components:
             itemName:
               type: string
               description: Variable name for each item in the collection.
+    ContentListResponse:
+      type: object
+      description: Paginated list of content entries.
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContentEntry'
+      required:
+      - results
     ContentEntry:
       type: object
       description: A single published content entry from a Builder.io model.
@@ -393,6 +374,25 @@ components:
           type: integer
           description: HTTP status code.
           example: 401
+    ContentVariation:
+      type: object
+      description: A/B test variation data attached to a content entry.
+      properties:
+        id:
+          type: string
+          description: Unique ID of this variation.
+        name:
+          type: string
+          description: Name of this variation.
+        testRatio:
+          type: number
+          description: Traffic percentage (0–1) allocated to this variation.
+          minimum: 0
+          maximum: 1
+        data:
+          type: object
+          description: Override data for this variation.
+          additionalProperties: true
   securitySchemes:
     apiKeyQuery:
       type: apiKey
