@@ -192,101 +192,6 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    BuilderElement:
-      type: object
-      description: A visual element node in the Builder.io page tree.
-      properties:
-        '@type':
-          type: string
-          description: Type discriminator for Builder elements.
-          example: '@builder.io/sdk:Element'
-        '@version':
-          type: integer
-          description: Schema version of this element.
-        id:
-          type: string
-          description: Unique identifier for this element.
-        tagName:
-          type: string
-          description: HTML tag to render for this element.
-          example: div
-        layerName:
-          type: string
-          description: Display name shown in the Builder editor layer panel.
-        children:
-          type: array
-          description: Nested child elements.
-          items:
-            $ref: '#/components/schemas/BuilderElement'
-        component:
-          type: object
-          description: Component binding for this element.
-          properties:
-            name:
-              type: string
-              description: The registered component name.
-              example: Hero
-            options:
-              type: object
-              description: Props passed to the component.
-              additionalProperties: true
-        responsiveStyles:
-          type: object
-          description: CSS styles keyed by breakpoint (large, medium, small, xsmall).
-          properties:
-            large:
-              type: object
-              additionalProperties:
-                type: string
-            medium:
-              type: object
-              additionalProperties:
-                type: string
-            small:
-              type: object
-              additionalProperties:
-                type: string
-            xsmall:
-              type: object
-              additionalProperties:
-                type: string
-        bindings:
-          type: object
-          description: Dynamic JS expression bindings for element properties.
-          additionalProperties:
-            type: string
-        properties:
-          type: object
-          description: Static HTML attribute key-value pairs.
-          additionalProperties:
-            type: string
-        actions:
-          type: object
-          description: Event handler expressions keyed by event name.
-          additionalProperties:
-            type: string
-        repeat:
-          type:
-          - object
-          - 'null'
-          description: List repeat configuration for rendering collections.
-          properties:
-            collection:
-              type: string
-              description: JS expression resolving to the collection to iterate.
-            itemName:
-              type: string
-              description: Variable name for each item in the collection.
-    ContentListResponse:
-      type: object
-      description: Paginated list of content entries.
-      properties:
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/ContentEntry'
-      required:
-      - results
     ContentEntry:
       type: object
       description: A single published content entry from a Builder.io model.
@@ -374,6 +279,101 @@ components:
           type: integer
           description: HTTP status code.
           example: 401
+    ContentListResponse:
+      type: object
+      description: Paginated list of content entries.
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContentEntry'
+      required:
+      - results
+    BuilderElement:
+      type: object
+      description: A visual element node in the Builder.io page tree.
+      properties:
+        '@type':
+          type: string
+          description: Type discriminator for Builder elements.
+          example: '@builder.io/sdk:Element'
+        '@version':
+          type: integer
+          description: Schema version of this element.
+        id:
+          type: string
+          description: Unique identifier for this element.
+        tagName:
+          type: string
+          description: HTML tag to render for this element.
+          example: div
+        layerName:
+          type: string
+          description: Display name shown in the Builder editor layer panel.
+        children:
+          type: array
+          description: Nested child elements.
+          items:
+            $ref: '#/components/schemas/BuilderElement'
+        component:
+          type: object
+          description: Component binding for this element.
+          properties:
+            name:
+              type: string
+              description: The registered component name.
+              example: Hero
+            options:
+              type: object
+              description: Props passed to the component.
+              additionalProperties: true
+        responsiveStyles:
+          type: object
+          description: CSS styles keyed by breakpoint (large, medium, small, xsmall).
+          properties:
+            large:
+              type: object
+              additionalProperties:
+                type: string
+            medium:
+              type: object
+              additionalProperties:
+                type: string
+            small:
+              type: object
+              additionalProperties:
+                type: string
+            xsmall:
+              type: object
+              additionalProperties:
+                type: string
+        bindings:
+          type: object
+          description: Dynamic JS expression bindings for element properties.
+          additionalProperties:
+            type: string
+        properties:
+          type: object
+          description: Static HTML attribute key-value pairs.
+          additionalProperties:
+            type: string
+        actions:
+          type: object
+          description: Event handler expressions keyed by event name.
+          additionalProperties:
+            type: string
+        repeat:
+          type:
+          - object
+          - 'null'
+          description: List repeat configuration for rendering collections.
+          properties:
+            collection:
+              type: string
+              description: JS expression resolving to the collection to iterate.
+            itemName:
+              type: string
+              description: Variable name for each item in the collection.
     ContentVariation:
       type: object
       description: A/B test variation data attached to a content entry.
