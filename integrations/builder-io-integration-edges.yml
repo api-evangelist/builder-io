@@ -11,6 +11,14 @@ checked:
 - https://skillsmp.com/sitemap.xml
 - https://www.skills.sh/sitemap.xml
 - yotpo/integrations/yotpo-integration-edges.yml
+- https://appexchange.salesforce.com/explore/business-needs?category=commerce
+- https://commercetools.com/partners
+- https://machalliance.org/members
+- https://marketplace.commercetools.com
+- https://printify.com/integrations/
+- https://www.bigcommerce.com/apps/
+- https://www.printful.com/integrations
+- eclipse/integrations/eclipse-integration-edges.yml
 marketplace_apps: []
 edges:
 - partner_name: Microsoft Azure Marketplace
@@ -45,23 +53,6 @@ edges:
   - Verified domain
   detected_by: sweep-devtools.py
   detected: '2026-10-14'
-- partner_name: Slack (own)
-  partner: slack
-  partner_match: mirror
-  mirror_match: domain
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://slack.com/marketplace/A096KGDMVM2-builderio
-  mirror_of: slack/integrations/slack-integration-edges.yml
-  apps:
-  - Builder.io
-  listing_count: 1
-  detected: '2026-10-18'
-  detected_by: mirror-platform-listings.py
-  category: Slack app
 - partner_name: Agent Skills (own GitHub org)
   partner: null
   partner_match: register
@@ -170,6 +161,55 @@ edges:
     detected: '2026-10-20'
   detected_by: sweep-agent-skills.py
   first_seen: '2026-10-20'
+- partner_name: MACH Alliance
+  partner: null
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://machalliance.org/members/builderio
+  category: composable (MACH) commerce alliance membership
+  contract_reference:
+    register: MACH Alliance members directory (machalliance.org/members)
+    standard: MACH Alliance (Microservices, API-first, Cloud-native SaaS, Headless)
+    spec_file: null
+    role: mach-certified-vendor
+    registered_name: Builder.io
+    register_id: builderio
+    register_category: MACH Certified ISVs
+    register_country: US
+    matched_domain: builder.io
+    matched_by: domain
+    signal_note: certified_products = ONE entry for the vendor's MACH certification (the Alliance certifies the
+      vendor against the MACH criteria; no per-product list); awards and self-listed partnerships are context, never
+      counted
+    detected_by: sweep-mach-headless-commerce.py
+    detected: '2026-10-20'
+    certified_products:
+    - product: MACH certified ISV
+      product_type: MACH certified ISV
+      certifier: MACH Alliance
+      lapsed: false
+  detected_by: sweep-mach-headless-commerce.py
+  first_seen: '2026-10-20'
+- partner_name: Slack (own)
+  partner: slack
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://slack.com/marketplace/A096KGDMVM2-builderio
+  mirror_of: slack/integrations/slack-integration-edges.yml
+  apps:
+  - Builder.io
+  listing_count: 1
+  detected: '2026-10-18'
+  detected_by: mirror-platform-listings.py
+  category: Slack app
 - partner_name: Yotpo (own)
   partner: yotpo
   partner_match: mirror
@@ -186,5 +226,24 @@ edges:
   listing_count: 1
   detected: '2026-10-20'
   detected_by: mirror-platform-listings.py
+- partner_name: Eclipse Foundation (open-vsx)
+  partner: eclipse
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: open-vsx
+  evidence: https://open-vsx.org/namespace/builder
+  mirror_of: eclipse/integrations/eclipse-integration-edges.yml
+  apps:
+  - Builder
+  listing_count: 1
+  detected: '2026-10-20'
+  detected_by: mirror-platform-listings.py
+  category: IDE / developer extension marketplace listing
+  badges:
+  - Verified namespace
 source:
 - https://github.com/marketplace?type=apps
