@@ -169,3 +169,16 @@
   relationship: platform-app
   status: not-a-workflow
   arazzo: null
+- slug: builder-io-netlify-own
+  label: Netlify (own)
+  partner: netlify
+  partner_name: Netlify (own)
+  category: CMS
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://www.netlify.com/integrations/builder-io/
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null

@@ -19,6 +19,7 @@ checked:
 - https://www.bigcommerce.com/apps/
 - https://www.printful.com/integrations
 - eclipse/integrations/eclipse-integration-edges.yml
+- netlify/integrations/netlify-integration-edges.yml
 marketplace_apps: []
 edges:
 - partner_name: Microsoft Azure Marketplace
@@ -245,5 +246,24 @@ edges:
   category: IDE / developer extension marketplace listing
   badges:
   - Verified namespace
+- partner_name: Netlify (own)
+  partner: netlify
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://www.netlify.com/integrations/builder-io/
+  mirror_of: netlify/integrations/netlify-integration-edges.yml
+  apps:
+  - Builder.io
+  - Builder.io Setup Guide
+  listing_count: 1
+  detected: '2026-10-22'
+  detected_by: mirror-platform-listings.py
+  category: CMS
+  partner_tier: listing
 source:
 - https://github.com/marketplace?type=apps
