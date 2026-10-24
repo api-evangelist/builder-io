@@ -1,608 +1,615 @@
 {
+  "info": {
+    "_postman_id": "a19e214a-fa80-45e4-978e-02b56c3a2e2d",
+    "name": "Builder.io Content API",
+    "description": "REST API for retrieving published content from Builder.io models. Supports filtering via MongoDB-style queries, targeting by user attributes, locale, and URL path. Returns paginated JSON results with support for enriched references and nested content symbols.\n\nContact Support:\n Name: Builder.io Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T21:05:14.000Z",
+    "updatedAt": "2026-10-21T21:05:14.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a19e214a-fa80-45e4-978e-02b56c3a2e2d"
+  },
   "item": [
     {
-      "id": "dc55f78e-6a34-401b-aeba-1909c9dfcab1",
-      "name": "Content",
-      "description": {
-        "content": "Retrieve and query published content entries from Builder.io models.",
-        "type": "text/plain"
-      },
+      "name": "content",
       "item": [
         {
-          "id": "6c7b82de-f7e5-4f58-aa58-7f53b99cdc0c",
-          "name": "Query content entries by model",
-          "request": {
-            "name": "Query content entries by model",
-            "description": {
-              "content": "Retrieves published content entries for a given model name. Supports MongoDB-style query filters, user attribute targeting, locale, pagination, and field selection. Results are sorted by priority by default.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "content",
-                ":model"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "apiKey",
-                  "value": "<string>",
-                  "description": "(Required) Your public Builder.io API key."
-                },
-                {
-                  "disabled": false,
-                  "key": "limit",
-                  "value": "10",
-                  "description": "Maximum number of results to return. Maximum value is 100."
-                },
-                {
-                  "disabled": false,
-                  "key": "offset",
-                  "value": "0",
-                  "description": "Number of results to skip for pagination."
-                },
-                {
-                  "disabled": false,
-                  "key": "query",
-                  "value": "<string>",
-                  "description": "MongoDB-style JSON query filter applied to content fields. Example: {\"data.slug\":{\"$eq\":\"my-page\"}}"
-                },
-                {
-                  "disabled": false,
-                  "key": "userAttributes",
-                  "value": "<string>",
-                  "description": "JSON object of user attributes used for targeting and personalization. Example: {\"urlPath\":\"/about\",\"country\":\"US\"}"
-                },
-                {
-                  "disabled": false,
-                  "key": "url",
-                  "value": "<uri>",
-                  "description": "The current page URL used for targeting by urlPath. Used as a shorthand for setting userAttributes.urlPath."
-                },
-                {
-                  "disabled": false,
-                  "key": "locale",
-                  "value": "<string>",
-                  "description": "The locale code for localized content retrieval (e.g., \"en-US\")."
-                },
-                {
-                  "disabled": false,
-                  "key": "enrich",
-                  "value": "false",
-                  "description": "When true, enriches references and Symbol blocks with their full content data instead of returning only IDs."
-                },
-                {
-                  "disabled": false,
-                  "key": "fields",
-                  "value": "<string>",
-                  "description": "Comma-separated list of fields to include in the response. Reduces payload size by returning only specified fields."
-                },
-                {
-                  "disabled": false,
-                  "key": "includeRefs",
-                  "value": "false",
-                  "description": "When true, includes referenced content objects inline."
-                },
-                {
-                  "disabled": false,
-                  "key": "cacheSeconds",
-                  "value": "<integer>",
-                  "description": "Override the CDN cache duration in seconds."
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "model",
-                  "description": "(Required) The name of the Builder.io content model to query."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "{model}",
+          "item": [
             {
-              "id": "7bb91592-9859-4ae9-ac68-a808e81c6aee",
-              "name": "A paginated list of content entries matching the query.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "content",
-                    ":model"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+              "name": "{id}",
+              "item": [
+                {
+                  "name": "Get a single content entry by ID",
+                  "id": "8f1b6b0f-2dee-40a7-8584-a5e2192dd3f8",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/content/:model/:id?apiKey=<string>&enrich=false",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "content",
+                        ":model",
+                        ":id"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Your public Builder.io API key.",
+                          "key": "apiKey",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "When true, enriches referenced content inline.",
+                          "key": "enrich",
+                          "value": "false"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "35dea2dd-8e9b-4d4d-9899-76db6a33dec7",
+                          "key": "model",
+                          "value": "<string>",
+                          "description": "(Required) The name of the Builder.io content model."
+                        },
+                        {
+                          "id": "5ab48150-adbb-4cfe-9b3b-51a6a8c348cc",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) The unique ID of the content entry."
+                        }
+                      ]
+                    },
+                    "description": "Retrieves a single content entry from a Builder.io model by its unique ID."
+                  },
+                  "response": [
                     {
-                      "key": "apiKey",
-                      "value": "YOUR_PUBLIC_API_KEY"
+                      "id": "829c383a-d10b-418e-a9df-d20c737da802",
+                      "name": "The content entry matching the given ID.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/content/:model/:id?apiKey=<API Key>&enrich=false",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "content",
+                            ":model",
+                            ":id"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) Your public Builder.io API key.",
+                              "key": "apiKey",
+                              "value": "<API Key>"
+                            },
+                            {
+                              "description": "When true, enriches referenced content inline.",
+                              "key": "enrich",
+                              "value": "false"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "model"
+                            },
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"@version\": \"<integer>\",\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"published\": \"draft\",\n  \"modelId\": \"<string>\",\n  \"priority\": \"<number>\",\n  \"firstPublished\": \"<integer>\",\n  \"lastUpdated\": \"<integer>\",\n  \"startDate\": \"<integer>\",\n  \"endDate\": \"<integer>\",\n  \"variations\": {\n    \"nisi_b\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"testRatio\": \"<number>\",\n      \"data\": {\n        \"Lorem_8ad\": \"Duis commodo in\",\n        \"veniam_d\": 65064994.404981166,\n        \"mollit_7a\": 55204310.64529464,\n        \"dolor_ee7\": 74056888.38054979,\n        \"laborum3_\": true\n      }\n    },\n    \"sint8f_\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"testRatio\": \"<number>\",\n      \"data\": {\n        \"tempor_7a4\": \"a\",\n        \"dolor_eb\": -74519010\n      }\n    }\n  },\n  \"testVariationId\": \"<string>\",\n  \"testVariationName\": \"<string>\",\n  \"data\": {\n    \"blocks\": [\n      {\n        \"@type\": \"<string>\",\n        \"@version\": \"<integer>\",\n        \"id\": \"<string>\",\n        \"tagName\": \"<string>\",\n        \"layerName\": \"<string>\",\n        \"children\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/BuilderElement detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/BuilderElement detected>\"\n          }\n        ],\n        \"component\": {\n          \"name\": \"<string>\",\n          \"options\": {\n            \"ipsum_135\": true\n          }\n        },\n        \"responsiveStyles\": {\n          \"large\": {\n            \"Duis_5\": \"<string>\"\n          },\n          \"medium\": {\n            \"suntfb\": \"<string>\",\n            \"uteb\": \"<string>\"\n          },\n          \"small\": {\n            \"etb_\": \"<string>\"\n          },\n          \"xsmall\": {\n            \"in66\": \"<string>\"\n          }\n        },\n        \"bindings\": {\n          \"elit61\": \"<string>\",\n          \"inf\": \"<string>\"\n        },\n        \"properties\": {\n          \"Ut_5\": \"<string>\"\n        },\n        \"actions\": {\n          \"irure_c1\": \"<string>\",\n          \"Duis88\": \"<string>\"\n        },\n        \"repeat\": null\n      },\n      {\n        \"@type\": \"<string>\",\n        \"@version\": \"<integer>\",\n        \"id\": \"<string>\",\n        \"tagName\": \"<string>\",\n        \"layerName\": \"<string>\",\n        \"children\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/BuilderElement detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/BuilderElement detected>\"\n          }\n        ],\n        \"component\": {\n          \"name\": \"<string>\",\n          \"options\": {\n            \"ad_16\": \"qui sit nulla\"\n          }\n        },\n        \"responsiveStyles\": {\n          \"large\": {\n            \"pariatur_3e_\": \"<string>\",\n            \"dolore_6\": \"<string>\",\n            \"veniam_a07\": \"<string>\"\n          },\n          \"medium\": {\n            \"irure74_\": \"<string>\",\n            \"laboris4b3\": \"<string>\",\n            \"in5\": \"<string>\"\n          },\n          \"small\": {\n            \"enim_9f4\": \"<string>\",\n            \"essec\": \"<string>\"\n          },\n          \"xsmall\": {\n            \"sedd\": \"<string>\"\n          }\n        },\n        \"bindings\": {\n          \"quis_7b6\": \"<string>\",\n          \"Ut_ac1\": \"<string>\",\n          \"laborumf0_\": \"<string>\"\n        },\n        \"properties\": {\n          \"dolore86\": \"<string>\"\n        },\n        \"actions\": {\n          \"velit_3\": \"<string>\",\n          \"elita\": \"<string>\"\n        },\n        \"repeat\": {\n          \"collection\": \"<string>\",\n          \"itemName\": \"<string>\"\n        }\n      }\n    ],\n    \"title\": \"<string>\",\n    \"url\": \"<string>\",\n    \"qui35\": \"mollit Exc\",\n    \"amet_c6c\": \"anim voluptate non id\"\n  }\n}",
+                      "createdAt": "2026-10-21T21:05:14.000Z",
+                      "updatedAt": "2026-10-21T21:05:14.000Z",
+                      "uid": "35240-829c383a-d10b-418e-a9df-d20c737da802"
                     },
                     {
-                      "key": "limit",
-                      "value": "10"
-                    },
-                    {
-                      "key": "offset",
-                      "value": "0"
-                    },
-                    {
-                      "key": "query",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "userAttributes",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "url",
-                      "value": "<uri>"
-                    },
-                    {
-                      "key": "locale",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "enrich",
-                      "value": "false"
-                    },
-                    {
-                      "key": "fields",
-                      "value": "id,name,data"
-                    },
-                    {
-                      "key": "includeRefs",
-                      "value": "false"
-                    },
-                    {
-                      "key": "cacheSeconds",
-                      "value": "<integer>"
-                    },
-                    {
-                      "key": "apiKey",
-                      "value": "<API Key>"
+                      "id": "2b4bee9b-3e84-4897-87eb-0904e81ffca2",
+                      "name": "Content entry not found.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/content/:model/:id?apiKey=<API Key>&enrich=false",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "content",
+                            ":model",
+                            ":id"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) Your public Builder.io API key.",
+                              "key": "apiKey",
+                              "value": "<API Key>"
+                            },
+                            {
+                              "description": "When true, enriches referenced content inline.",
+                              "key": "enrich",
+                              "value": "false"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "model"
+                            },
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                      "createdAt": "2026-10-21T21:05:14.000Z",
+                      "updatedAt": "2026-10-21T21:05:14.000Z",
+                      "uid": "35240-2b4bee9b-3e84-4897-87eb-0904e81ffca2"
                     }
                   ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "model",
-                      "description": "(Required) The name of the Builder.io content model to query."
-                    }
-                  ]
-                },
+                  "createdAt": "2026-10-21T21:05:14.000Z",
+                  "updatedAt": "2026-10-21T21:05:14.000Z",
+                  "uid": "35240-8f1b6b0f-2dee-40a7-8584-a5e2192dd3f8"
+                }
+              ],
+              "id": "bdb4e827-3aff-403c-b05d-a3181a1de9b6",
+              "createdAt": "2026-10-21T21:05:14.000Z",
+              "updatedAt": "2026-10-21T21:05:14.000Z",
+              "uid": "35240-bdb4e827-3aff-403c-b05d-a3181a1de9b6"
+            },
+            {
+              "name": "Query content entries by model",
+              "id": "2f8cf488-e929-4c99-94b5-bc425d35199c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
                 "header": [
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"results\": [\n    {\n      \"id\": \"abc123def456\",\n      \"name\": \"Home Page\",\n      \"published\": \"published\",\n      \"modelId\": \"page\",\n      \"priority\": 0,\n      \"firstPublished\": 1700000000000,\n      \"lastUpdated\": 1717000000000,\n      \"data\": {\n        \"title\": \"Welcome to Our Site\",\n        \"description\": \"The home page of our website.\",\n        \"blocks\": []\n      }\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "72494b85-a49a-4109-969f-ce36de0cf443",
-              "name": "Bad request — invalid query parameters or missing apiKey.",
-              "originalRequest": {
                 "url": {
+                  "raw": "{{baseUrl}}/content/:model?apiKey=<string>&limit=10&offset=0&query=<string>&userAttributes=<string>&url=<uri>&locale=<string>&enrich=false&fields=<string>&includeRefs=false&cacheSeconds=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "content",
                     ":model"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
                   "query": [
                     {
+                      "description": "(Required) Your public Builder.io API key.",
                       "key": "apiKey",
-                      "value": "YOUR_PUBLIC_API_KEY"
+                      "value": "<string>"
                     },
                     {
+                      "description": "Maximum number of results to return. Maximum value is 100.",
                       "key": "limit",
                       "value": "10"
                     },
                     {
+                      "description": "Number of results to skip for pagination.",
                       "key": "offset",
                       "value": "0"
                     },
                     {
+                      "description": "MongoDB-style JSON query filter applied to content fields. Example: {\"data.slug\":{\"$eq\":\"my-page\"}}",
                       "key": "query",
                       "value": "<string>"
                     },
                     {
+                      "description": "JSON object of user attributes used for targeting and personalization. Example: {\"urlPath\":\"/about\",\"country\":\"US\"}",
                       "key": "userAttributes",
                       "value": "<string>"
                     },
                     {
+                      "description": "The current page URL used for targeting by urlPath. Used as a shorthand for setting userAttributes.urlPath.",
                       "key": "url",
                       "value": "<uri>"
                     },
                     {
+                      "description": "The locale code for localized content retrieval (e.g., \"en-US\").",
                       "key": "locale",
                       "value": "<string>"
                     },
                     {
+                      "description": "When true, enriches references and Symbol blocks with their full content data instead of returning only IDs.",
                       "key": "enrich",
                       "value": "false"
                     },
                     {
+                      "description": "Comma-separated list of fields to include in the response. Reduces payload size by returning only specified fields.",
                       "key": "fields",
-                      "value": "id,name,data"
+                      "value": "<string>"
                     },
                     {
+                      "description": "When true, includes referenced content objects inline.",
                       "key": "includeRefs",
                       "value": "false"
                     },
                     {
+                      "description": "Override the CDN cache duration in seconds.",
                       "key": "cacheSeconds",
                       "value": "<integer>"
-                    },
-                    {
-                      "key": "apiKey",
-                      "value": "<API Key>"
                     }
                   ],
                   "variable": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
+                      "id": "c7a5a209-8ad9-4315-8f8e-d4d392337554",
                       "key": "model",
+                      "value": "<string>",
                       "description": "(Required) The name of the Builder.io content model to query."
                     }
                   ]
                 },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                "description": "Retrieves published content entries for a given model name. Supports MongoDB-style query filters, user attribute targeting, locale, pagination, and field selection. Results are sorted by priority by default."
               },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"Unauthorized\",\n  \"statusCode\": 401\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "a1d961ef-086e-44b8-9a01-4edfdbfeb164",
-              "name": "Unauthorized — invalid or missing API key.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "content",
-                    ":model"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+                  "id": "dd35cd9c-b6c0-4bf6-9b6b-41071dd0e093",
+                  "name": "A paginated list of content entries matching the query.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/content/:model?apiKey=<API Key>&limit=10&offset=0&query=<string>&userAttributes=<string>&url=<uri>&locale=<string>&enrich=false&fields=<string>&includeRefs=false&cacheSeconds=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "content",
+                        ":model"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Your public Builder.io API key.",
+                          "key": "apiKey",
+                          "value": "<API Key>"
+                        },
+                        {
+                          "description": "Maximum number of results to return. Maximum value is 100.",
+                          "key": "limit",
+                          "value": "10"
+                        },
+                        {
+                          "description": "Number of results to skip for pagination.",
+                          "key": "offset",
+                          "value": "0"
+                        },
+                        {
+                          "description": "MongoDB-style JSON query filter applied to content fields. Example: {\"data.slug\":{\"$eq\":\"my-page\"}}",
+                          "key": "query",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "JSON object of user attributes used for targeting and personalization. Example: {\"urlPath\":\"/about\",\"country\":\"US\"}",
+                          "key": "userAttributes",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The current page URL used for targeting by urlPath. Used as a shorthand for setting userAttributes.urlPath.",
+                          "key": "url",
+                          "value": "<uri>"
+                        },
+                        {
+                          "description": "The locale code for localized content retrieval (e.g., \"en-US\").",
+                          "key": "locale",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "When true, enriches references and Symbol blocks with their full content data instead of returning only IDs.",
+                          "key": "enrich",
+                          "value": "false"
+                        },
+                        {
+                          "description": "Comma-separated list of fields to include in the response. Reduces payload size by returning only specified fields.",
+                          "key": "fields",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "When true, includes referenced content objects inline.",
+                          "key": "includeRefs",
+                          "value": "false"
+                        },
+                        {
+                          "description": "Override the CDN cache duration in seconds.",
+                          "key": "cacheSeconds",
+                          "value": "<integer>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "model"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "key": "apiKey",
-                      "value": "YOUR_PUBLIC_API_KEY"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "10"
-                    },
-                    {
-                      "key": "offset",
-                      "value": "0"
-                    },
-                    {
-                      "key": "query",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "userAttributes",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "url",
-                      "value": "<uri>"
-                    },
-                    {
-                      "key": "locale",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "enrich",
-                      "value": "false"
-                    },
-                    {
-                      "key": "fields",
-                      "value": "id,name,data"
-                    },
-                    {
-                      "key": "includeRefs",
-                      "value": "false"
-                    },
-                    {
-                      "key": "cacheSeconds",
-                      "value": "<integer>"
-                    },
-                    {
-                      "key": "apiKey",
-                      "value": "<API Key>"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
                   ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "model",
-                      "description": "(Required) The name of the Builder.io content model to query."
-                    }
-                  ]
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"results\": [\n    {\n      \"@version\": \"<integer>\",\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"published\": \"draft\",\n      \"modelId\": \"<string>\",\n      \"priority\": \"<number>\",\n      \"firstPublished\": \"<integer>\",\n      \"lastUpdated\": \"<integer>\",\n      \"startDate\": \"<integer>\",\n      \"endDate\": \"<integer>\",\n      \"variations\": {\n        \"anim_b\": {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"testRatio\": \"<number>\",\n          \"data\": {\n            \"aliquip_9_5\": 83031130.82767984\n          }\n        },\n        \"ex_49\": {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"testRatio\": \"<number>\",\n          \"data\": {\n            \"minim_ed2\": \"voluptate Duis culpa non\"\n          }\n        }\n      },\n      \"testVariationId\": \"<string>\",\n      \"testVariationName\": \"<string>\",\n      \"data\": {\n        \"blocks\": [\n          {\n            \"@type\": \"<string>\",\n            \"@version\": \"<integer>\",\n            \"id\": \"<string>\",\n            \"tagName\": \"<string>\",\n            \"layerName\": \"<string>\",\n            \"children\": [\n              {\n                \"value\": \"<Circular reference to #/components/schemas/BuilderElement detected>\"\n              },\n              {\n                \"value\": \"<Circular reference to #/components/schemas/BuilderElement detected>\"\n              }\n            ],\n            \"component\": {\n              \"name\": \"<string>\",\n              \"options\": {\n                \"pariatur_c\": -80748482,\n                \"dolore69\": \"ipsum sed\"\n              }\n            },\n            \"responsiveStyles\": {\n              \"large\": {\n                \"et_5\": \"<string>\"\n              },\n              \"medium\": {\n                \"etf8_\": \"<string>\",\n                \"sunt__29\": \"<string>\",\n                \"ad2e\": \"<string>\",\n                \"fugiat8\": \"<string>\"\n              },\n              \"small\": {\n                \"nulla3c7\": \"<string>\",\n                \"amet_e_\": \"<string>\",\n                \"dolor_561\": \"<string>\",\n                \"fugiat4\": \"<string>\"\n              },\n              \"xsmall\": {\n                \"nostrud6\": \"<string>\",\n                \"dolor_e68\": \"<string>\",\n                \"ad_cd6\": \"<string>\"\n              }\n            },\n            \"bindings\": {\n              \"Duis2\": \"<string>\",\n              \"reprehenderitc\": \"<string>\",\n              \"id8\": \"<string>\"\n            },\n            \"properties\": {\n              \"cupidatat_1\": \"<string>\",\n              \"aliqua_5e3\": \"<string>\",\n              \"Ut_8\": \"<string>\"\n            },\n            \"actions\": {\n              \"dolor_6\": \"<string>\",\n              \"eu_a_\": \"<string>\",\n              \"sunt2a\": \"<string>\",\n              \"aliquip_0\": \"<string>\",\n              \"officia_6\": \"<string>\"\n            },\n            \"repeat\": null\n          },\n          {\n            \"@type\": \"<string>\",\n            \"@version\": \"<integer>\",\n            \"id\": \"<string>\",\n            \"tagName\": \"<string>\",\n            \"layerName\": \"<string>\",\n            \"children\": [\n              {\n                \"value\": \"<Circular reference to #/components/schemas/BuilderElement detected>\"\n              },\n              {\n                \"value\": \"<Circular reference to #/components/schemas/BuilderElement detected>\"\n              }\n            ],\n            \"component\": {\n              \"name\": \"<string>\",\n              \"options\": {\n                \"veniam433\": false,\n                \"veniame1\": -20948144.14188227\n              }\n            },\n            \"responsiveStyles\": {\n              \"large\": {\n                \"consequat15\": \"<string>\",\n                \"ullamco_4d6\": \"<string>\"\n              },\n              \"medium\": {\n                \"nulla74\": \"<string>\"\n              },\n              \"small\": {\n                \"proident_81_\": \"<string>\",\n                \"proident16e\": \"<string>\"\n              },\n              \"xsmall\": {\n                \"officia354\": \"<string>\"\n              }\n            },\n            \"bindings\": {\n              \"exercitation245\": \"<string>\"\n            },\n            \"properties\": {\n              \"dolor_64\": \"<string>\",\n              \"amet_13\": \"<string>\"\n            },\n            \"actions\": {\n              \"proident__9\": \"<string>\",\n              \"doloref3\": \"<string>\",\n              \"aliqua_6\": \"<string>\"\n            },\n            \"repeat\": {\n              \"collection\": \"<string>\",\n              \"itemName\": \"<string>\"\n            }\n          }\n        ],\n        \"title\": \"<string>\",\n        \"url\": \"<string>\",\n        \"dolore_4\": \"nostrud Ut\",\n        \"do_1\": true,\n        \"sed5f0\": \"ullamco quis\"\n      }\n    },\n    {\n      \"@version\": \"<integer>\",\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"published\": \"published\",\n      \"modelId\": \"<string>\",\n      \"priority\": \"<number>\",\n      \"firstPublished\": \"<integer>\",\n      \"lastUpdated\": \"<integer>\",\n      \"startDate\": \"<integer>\",\n      \"endDate\": \"<integer>\",\n      \"variations\": {\n        \"ut2a5\": {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"testRatio\": \"<number>\",\n          \"data\": {\n            \"ut_7_\": \"reprehenderit dolor\",\n            \"occaecat_913\": -61837096.473008834\n          }\n        },\n        \"eiusmod_a\": {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"testRatio\": \"<number>\",\n          \"data\": {\n            \"Duis_12\": true\n          }\n        }\n      },\n      \"testVariationId\": \"<string>\",\n      \"testVariationName\": \"<string>\",\n      \"data\": {\n        \"blocks\": [\n          {\n            \"@type\": \"<string>\",\n            \"@version\": \"<integer>\",\n            \"id\": \"<string>\",\n            \"tagName\": \"<string>\",\n            \"layerName\": \"<string>\",\n            \"children\": [\n              {\n                \"value\": \"<Circular reference to #/components/schemas/BuilderElement detected>\"\n              },\n              {\n                \"value\": \"<Circular reference to #/components/schemas/BuilderElement detected>\"\n              }\n            ],\n            \"component\": {\n              \"name\": \"<string>\",\n              \"options\": {\n                \"in_59\": \"ut culpa incididunt\",\n                \"qui541\": true,\n                \"nisi05c\": \"et deserunt laboris\"\n              }\n            },\n            \"responsiveStyles\": {\n              \"large\": {\n                \"dolore_be8\": \"<string>\",\n                \"est625\": \"<string>\",\n                \"dolor127\": \"<string>\"\n              },\n              \"medium\": {\n                \"ipsuma\": \"<string>\"\n              },\n              \"small\": {\n                \"voluptate5_5\": \"<string>\",\n                \"fugiat54\": \"<string>\"\n              },\n              \"xsmall\": {\n                \"fugiat0\": \"<string>\",\n                \"fugiat_09\": \"<string>\"\n              }\n            },\n            \"bindings\": {\n              \"do_a5\": \"<string>\",\n              \"pariatur_b\": \"<string>\",\n              \"in_\": \"<string>\"\n            },\n            \"properties\": {\n              \"aliqua_f3d\": \"<string>\"\n            },\n            \"actions\": {\n              \"id_e3\": \"<string>\",\n              \"labore_f58\": \"<string>\"\n            },\n            \"repeat\": {\n              \"collection\": \"<string>\",\n              \"itemName\": \"<string>\"\n            }\n          },\n          {\n            \"@type\": \"<string>\",\n            \"@version\": \"<integer>\",\n            \"id\": \"<string>\",\n            \"tagName\": \"<string>\",\n            \"layerName\": \"<string>\",\n            \"children\": [\n              {\n                \"value\": \"<Circular reference to #/components/schemas/BuilderElement detected>\"\n              },\n              {\n                \"value\": \"<Circular reference to #/components/schemas/BuilderElement detected>\"\n              }\n            ],\n            \"component\": {\n              \"name\": \"<string>\",\n              \"options\": {\n                \"quis_acd\": true,\n                \"autec\": false,\n                \"id2\": \"velit\"\n              }\n            },\n            \"responsiveStyles\": {\n              \"large\": {\n                \"sit_5_3\": \"<string>\",\n                \"est_d\": \"<string>\"\n              },\n              \"medium\": {\n                \"dolore_044\": \"<string>\",\n                \"cillum__\": \"<string>\"\n              },\n              \"small\": {\n                \"qui_fb\": \"<string>\",\n                \"eiusmod_f6\": \"<string>\"\n              },\n              \"xsmall\": {\n                \"nostrudc1\": \"<string>\"\n              }\n            },\n            \"bindings\": {\n              \"ea4\": \"<string>\",\n              \"in_6f\": \"<string>\",\n              \"sit_2b\": \"<string>\",\n              \"euc\": \"<string>\"\n            },\n            \"properties\": {\n              \"laborum_2b\": \"<string>\",\n              \"anim_6\": \"<string>\"\n            },\n            \"actions\": {\n              \"iruref2\": \"<string>\"\n            },\n            \"repeat\": null\n          }\n        ],\n        \"title\": \"<string>\",\n        \"url\": \"<string>\",\n        \"reprehenderit_1d\": -53579936,\n        \"tempor25_\": true,\n        \"Duis_b\": 18272897.705799013\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-10-21T21:05:14.000Z",
+                  "updatedAt": "2026-10-21T21:05:14.000Z",
+                  "uid": "35240-dd35cd9c-b6c0-4bf6-9b6b-41071dd0e093"
                 },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "980e0580-3d81-4bc5-bd90-1f114b3cfa5e",
+                  "name": "Bad request \u2014 invalid query parameters or missing apiKey.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/content/:model?apiKey=<API Key>&limit=10&offset=0&query=<string>&userAttributes=<string>&url=<uri>&locale=<string>&enrich=false&fields=<string>&includeRefs=false&cacheSeconds=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "content",
+                        ":model"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Your public Builder.io API key.",
+                          "key": "apiKey",
+                          "value": "<API Key>"
+                        },
+                        {
+                          "description": "Maximum number of results to return. Maximum value is 100.",
+                          "key": "limit",
+                          "value": "10"
+                        },
+                        {
+                          "description": "Number of results to skip for pagination.",
+                          "key": "offset",
+                          "value": "0"
+                        },
+                        {
+                          "description": "MongoDB-style JSON query filter applied to content fields. Example: {\"data.slug\":{\"$eq\":\"my-page\"}}",
+                          "key": "query",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "JSON object of user attributes used for targeting and personalization. Example: {\"urlPath\":\"/about\",\"country\":\"US\"}",
+                          "key": "userAttributes",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The current page URL used for targeting by urlPath. Used as a shorthand for setting userAttributes.urlPath.",
+                          "key": "url",
+                          "value": "<uri>"
+                        },
+                        {
+                          "description": "The locale code for localized content retrieval (e.g., \"en-US\").",
+                          "key": "locale",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "When true, enriches references and Symbol blocks with their full content data instead of returning only IDs.",
+                          "key": "enrich",
+                          "value": "false"
+                        },
+                        {
+                          "description": "Comma-separated list of fields to include in the response. Reduces payload size by returning only specified fields.",
+                          "key": "fields",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "When true, includes referenced content objects inline.",
+                          "key": "includeRefs",
+                          "value": "false"
+                        },
+                        {
+                          "description": "Override the CDN cache duration in seconds.",
+                          "key": "cacheSeconds",
+                          "value": "<integer>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "model"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                  "createdAt": "2026-10-21T21:05:14.000Z",
+                  "updatedAt": "2026-10-21T21:05:14.000Z",
+                  "uid": "35240-980e0580-3d81-4bc5-bd90-1f114b3cfa5e"
+                },
+                {
+                  "id": "8bb18e20-7df1-442e-b2d0-de8e078eddad",
+                  "name": "Unauthorized \u2014 invalid or missing API key.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/content/:model?apiKey=<API Key>&limit=10&offset=0&query=<string>&userAttributes=<string>&url=<uri>&locale=<string>&enrich=false&fields=<string>&includeRefs=false&cacheSeconds=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "content",
+                        ":model"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Your public Builder.io API key.",
+                          "key": "apiKey",
+                          "value": "<API Key>"
+                        },
+                        {
+                          "description": "Maximum number of results to return. Maximum value is 100.",
+                          "key": "limit",
+                          "value": "10"
+                        },
+                        {
+                          "description": "Number of results to skip for pagination.",
+                          "key": "offset",
+                          "value": "0"
+                        },
+                        {
+                          "description": "MongoDB-style JSON query filter applied to content fields. Example: {\"data.slug\":{\"$eq\":\"my-page\"}}",
+                          "key": "query",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "JSON object of user attributes used for targeting and personalization. Example: {\"urlPath\":\"/about\",\"country\":\"US\"}",
+                          "key": "userAttributes",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The current page URL used for targeting by urlPath. Used as a shorthand for setting userAttributes.urlPath.",
+                          "key": "url",
+                          "value": "<uri>"
+                        },
+                        {
+                          "description": "The locale code for localized content retrieval (e.g., \"en-US\").",
+                          "key": "locale",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "When true, enriches references and Symbol blocks with their full content data instead of returning only IDs.",
+                          "key": "enrich",
+                          "value": "false"
+                        },
+                        {
+                          "description": "Comma-separated list of fields to include in the response. Reduces payload size by returning only specified fields.",
+                          "key": "fields",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "When true, includes referenced content objects inline.",
+                          "key": "includeRefs",
+                          "value": "false"
+                        },
+                        {
+                          "description": "Override the CDN cache duration in seconds.",
+                          "key": "cacheSeconds",
+                          "value": "<integer>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "model"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"statusCode\": \"<integer>\"\n}",
+                  "createdAt": "2026-10-21T21:05:14.000Z",
+                  "updatedAt": "2026-10-21T21:05:14.000Z",
+                  "uid": "35240-8bb18e20-7df1-442e-b2d0-de8e078eddad"
                 }
               ],
-              "body": "{\n  \"error\": \"Unauthorized\",\n  \"statusCode\": 401\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-21T21:05:14.000Z",
+              "updatedAt": "2026-10-21T21:05:14.000Z",
+              "uid": "35240-2f8cf488-e929-4c99-94b5-bc425d35199c"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "6a9ed9de-c0a3-47fc-8695-6751ab8b0ae2",
-          "name": "Get a single content entry by ID",
-          "request": {
-            "name": "Get a single content entry by ID",
-            "description": {
-              "content": "Retrieves a single content entry from a Builder.io model by its unique ID.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "content",
-                ":model",
-                ":id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "apiKey",
-                  "value": "<string>",
-                  "description": "(Required) Your public Builder.io API key."
-                },
-                {
-                  "disabled": false,
-                  "key": "enrich",
-                  "value": "false",
-                  "description": "When true, enriches referenced content inline."
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "model",
-                  "description": "(Required) The name of the Builder.io content model."
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) The unique ID of the content entry."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "174a0b4f-bb5c-47c1-8ed7-a5493d517c1b",
-              "name": "The content entry matching the given ID.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "content",
-                    ":model",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "apiKey",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "enrich",
-                      "value": "false"
-                    },
-                    {
-                      "key": "apiKey",
-                      "value": "<API Key>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "model",
-                      "description": "(Required) The name of the Builder.io content model."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The unique ID of the content entry."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"@version\": 2,\n  \"id\": \"abc123def456abc123def456abc12345\",\n  \"name\": \"Home Page\",\n  \"published\": \"published\",\n  \"modelId\": \"page\",\n  \"priority\": 0,\n  \"firstPublished\": 1700000000000,\n  \"lastUpdated\": 1717000000000,\n  \"startDate\": 1717000000000,\n  \"endDate\": 1719600000000,\n  \"variations\": {\n    \"key_0\": {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"testRatio\": 0.6457528089417403,\n      \"data\": {\n        \"key_0\": \"string\",\n        \"key_1\": 1040,\n        \"key_2\": 5342\n      }\n    },\n    \"key_1\": {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"testRatio\": 0.9580501245120201,\n      \"data\": {\n        \"key_0\": 1137,\n        \"key_1\": 548\n      }\n    },\n    \"key_2\": {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"testRatio\": 0.4229813210566994,\n      \"data\": {\n        \"key_0\": 5942.850412451699,\n        \"key_1\": false\n      }\n    }\n  },\n  \"testVariationId\": \"string\",\n  \"testVariationName\": \"string\",\n  \"data\": {\n    \"blocks\": [\n      {\n        \"@type\": \"@builder.io/sdk:Element\",\n        \"@version\": 1184,\n        \"id\": \"string\",\n        \"tagName\": \"div\",\n        \"layerName\": \"string\",\n        \"children\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/BuilderElement detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/BuilderElement detected>\"\n          }\n        ],\n        \"component\": {\n          \"name\": \"Hero\",\n          \"options\": {\n            \"key_0\": 6178,\n            \"key_1\": 7289\n          }\n        },\n        \"responsiveStyles\": {\n          \"large\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\",\n            \"key_2\": \"string\",\n            \"key_3\": \"string\"\n          },\n          \"medium\": {\n            \"key_0\": \"string\"\n          },\n          \"small\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\"\n          },\n          \"xsmall\": {\n            \"key_0\": \"string\"\n          }\n        },\n        \"bindings\": {\n          \"key_0\": \"string\"\n        },\n        \"properties\": {\n          \"key_0\": \"string\"\n        },\n        \"actions\": {\n          \"key_0\": \"string\"\n        },\n        \"repeat\": {\n          \"collection\": \"string\",\n          \"itemName\": \"string\"\n        }\n      },\n      {\n        \"@type\": \"@builder.io/sdk:Element\",\n        \"@version\": 6204,\n        \"id\": \"string\",\n        \"tagName\": \"div\",\n        \"layerName\": \"string\",\n        \"children\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/BuilderElement detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/BuilderElement detected>\"\n          }\n        ],\n        \"component\": {\n          \"name\": \"Hero\",\n          \"options\": {\n            \"key_0\": \"string\",\n            \"key_1\": 6423,\n            \"key_2\": 6730\n          }\n        },\n        \"responsiveStyles\": {\n          \"large\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\",\n            \"key_2\": \"string\"\n          },\n          \"medium\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\"\n          },\n          \"small\": {\n            \"key_0\": \"string\"\n          },\n          \"xsmall\": {\n            \"key_0\": \"string\"\n          }\n        },\n        \"bindings\": {\n          \"key_0\": \"string\"\n        },\n        \"properties\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"actions\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"repeat\": {\n          \"collection\": \"string\",\n          \"itemName\": \"string\"\n        }\n      }\n    ],\n    \"title\": \"string\",\n    \"url\": \"string\",\n    \"key_0\": 1771.0534303395632,\n    \"key_1\": 7874.824929405335,\n    \"key_2\": 2328\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "a0010fa2-f0d4-4321-b0b9-1403f5f391b5",
-              "name": "Content entry not found.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "content",
-                    ":model",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "apiKey",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "enrich",
-                      "value": "false"
-                    },
-                    {
-                      "key": "apiKey",
-                      "value": "<API Key>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "model",
-                      "description": "(Required) The name of the Builder.io content model."
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) The unique ID of the content entry."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"Unauthorized\",\n  \"statusCode\": 401\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "a4be4c67-413e-4e85-8bcc-c24372a105f0",
+          "createdAt": "2026-10-21T21:05:14.000Z",
+          "updatedAt": "2026-10-21T21:05:14.000Z",
+          "uid": "35240-a4be4c67-413e-4e85-8bcc-c24372a105f0"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://cdn.builder.io/api/v3",
-      "key": "baseUrl"
+      "id": "01c5f2e4-8f49-4d41-a51d-e436c498e649",
+      "createdAt": "2026-10-21T21:05:14.000Z",
+      "updatedAt": "2026-10-21T21:05:14.000Z",
+      "uid": "35240-01c5f2e4-8f49-4d41-a51d-e436c498e649"
     }
   ],
   "auth": {
@@ -610,25 +617,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "apiKey"
+        "value": "apiKey",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "query"
+        "value": "query",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "f053695e-912a-41b9-b24d-84badcebe840",
-    "name": "Builder.io Content API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "REST API for retrieving published content from Builder.io models. Supports filtering via MongoDB-style queries, targeting by user attributes, locale, and URL path. Returns paginated JSON results with support for enriched references and nested content symbols.\n\nContact Support:\n Name: Builder.io Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://cdn.builder.io/api/v3"
     }
-  }
+  ]
 }
