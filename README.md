@@ -1,4 +1,4 @@
-# Builder.io (builder-io)
+# Builder.io
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,60 +64,168 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Builder.io is a visual development platform and headless CMS that enables product and marketing teams to build, test, and optimize digital experiences without constant developer involvement. It provides REST and GraphQL APIs for content delivery, an Admin API for space and access management, and AI-powered visual editing tools for building pages across React, Vue, Svelte, Qwik, Angular, and other frameworks.
+Builder.io is a visual development platform and headless CMS that enables teams to build, test, and optimize digital experiences without requiring constant developer involvement. The platform combines an AI-powered visual editor with a suite of APIs including REST Content, GraphQL, Write, Upload, Image, Assets, and Admin APIs for managing and delivering content at scale. Builder.io supports A/B testing, personalization, and targeting, making it suitable for marketing and product teams working across web and mobile channels. It integrates natively with React, Vue, Svelte, Qwik, Angular, and other frameworks through official SDKs, and connects to Git-based workflows via GitHub, GitLab, and Bitbucket.
 
-APIs.json: [https://raw.githubusercontent.com/api-evangelist/builder-io/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/builder-io/refs/heads/main/apis.yml)
+**Areas:** Headless CMS · Visual Development · Content Delivery · A/B Testing · GraphQL · REST · Personalization · Page Building
 
-Manage and monitor your Builder.io API fleet with [Naftiko](https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=builder-io-api-evangelist&utm_content=repo).
+## Builder.io on APIs.io
 
-## Tags
+Everything profiled for Builder.io is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/builder-io/](https://apis.io/providers/builder-io/)** — or go straight to one of the APIs or properties below.
 
-- Headless CMS
-- Visual Development
-- Content Delivery
-- A/B Testing
-- GraphQL
-- REST
-- Personalization
-- Page Building
+### APIs (6)
 
-## APIs
+- [Builder.io Content API](https://apis.io/apis/builder-io/content-api/) — REST API for retrieving published content from Builder.io models. Supports filtering via MongoDB-style queries, targeting by user attributes, locale, and…
+- [Builder.io GraphQL Content API](https://apis.io/apis/builder-io/graphql-api/) — GraphQL API for querying Builder.io content models with type-safe schemas. Supports GET and POST requests, model-level queries with pagination, and…
+- [Builder.io Admin GraphQL API](https://apis.io/apis/builder-io/admin-api/) — Private GraphQL API for back-end servers and trusted integrations. Enables space management, user access control, SSO configuration (SAML/OIDC), webhook…
+- [Builder.io Write API](https://apis.io/apis/builder-io/write-api/) — API for programmatically creating, updating, and deleting content entries in Builder.io. Intended for server-side automation and content migration workflows…
+- [Builder.io Upload API](https://apis.io/apis/builder-io/upload-api/) — API for programmatically uploading files such as images and videos to Builder.io. Supports automation of asset ingestion pipelines and bulk media management…
+- [Builder.io Image API](https://apis.io/apis/builder-io/image-api/) — API for accessing and downloading optimized versions of images uploaded to Builder.io. Supports on-the-fly image transformation and CDN-optimized delivery…
 
-| API | Description | Docs |
-|-----|-------------|------|
-| Content API | REST API for retrieving published content from Builder.io models | [Docs](https://www.builder.io/c/docs/content-api) |
-| GraphQL Content API | GraphQL interface for querying Builder.io content models | [Docs](https://www.builder.io/c/docs/graphql-api) |
-| Admin GraphQL API | Private GraphQL API for space, user, and model management | [Docs](https://www.builder.io/c/docs/admin-graphql-api) |
-| Write API | REST API for creating and updating content programmatically | [Docs](https://www.builder.io/c/docs/api-intro) |
-| Upload API | API for uploading images and video assets | [Docs](https://www.builder.io/c/docs/api-intro) |
-| Image API | CDN-optimized image access and transformation API | [Docs](https://www.builder.io/c/docs/api-intro) |
+### Published properties
 
-## Plans / Rate Limits / FinOps
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-| Resource | File |
-|----------|------|
-| Plans & Pricing | [plans/builder-io-plans-pricing.yml](plans/builder-io-plans-pricing.yml) |
-| Rate Limits | [rate-limits/builder-io-rate-limits.yml](rate-limits/builder-io-rate-limits.yml) |
-| FinOps | [finops/builder-io-finops.yml](finops/builder-io-finops.yml) |
+#### GraphQL (1)
 
-## Timestamps
+GraphQL schemas.
 
-- Created: 2026-06-12
-- Modified: 2026-06-12
+- [Builder.io GraphQL API](https://apis.io/graphqls/builder-io/builder-io-graphql/)
 
-## Common Properties
+#### MCP servers (1)
 
-| Type | URL |
-|------|-----|
-| Website | https://www.builder.io |
-| Documentation | https://www.builder.io/c/docs/api-intro |
-| GitHub Organization | https://github.com/BuilderIO |
-| LinkedIn | https://www.linkedin.com/company/builder-io |
-| X (Twitter) | https://twitter.com/builderio |
-| Blog | https://www.builder.io/blog |
-| Pricing | https://www.builder.io/m/pricing |
-| Status Page | https://status.builder.io |
+Model Context Protocol servers that expose the API to agents.
 
-## Maintainers
+- [builder-io](https://apis.io/servers/builder-io/builder-io/)
 
-- Kin Lane / kin@apievangelist.com
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Builder Io Agentic Access](https://apis.io/agentic-access/builder-io/builder-io-agentic-access/)
+
+#### JSON Schema (1)
+
+The data models the API reads and writes.
+
+- [BuilderContentEntry](https://apis.io/schemas/builder-io/builder-io-content-entry/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Builder Io Context](https://apis.io/jsonld/builder-io/builder-io-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Builder Io Vocabulary](https://apis.io/vocabularies/builder-io/builder-io-vocabulary/)
+
+#### Examples (1)
+
+Example requests and responses.
+
+- [Builder Io Get Content Example](https://apis.io/examples/builder-io/builder-io-get-content-example/)
+
+#### Collections (1)
+
+Postman and Open Collection request collections.
+
+- [Builder.io Content API](https://apis.io/collections/builder-io/open-builder-io-content-api/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [Builder.io — jsonschema rules](https://apis.io/rules/builder-io/builder-io-jsonschema-spectral-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Builder Io Authentication](https://apis.io/security/builder-io/builder-io-authentication/)
+- [Builder Io Domain Security](https://apis.io/security/builder-io/builder-io-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Builder Io Plans Pricing](https://apis.io/plans/builder-io/builder-io-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Builder Io Rate Limits](https://apis.io/rate-limits/builder-io/builder-io-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Builder Io Finops](https://apis.io/finops/builder-io/builder-io-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.builder.io)
+- [Documentation](https://www.builder.io/c/docs/api-intro)
+- [Pricing](https://www.builder.io/m/pricing)
+- [Blog](https://www.builder.io/blog)
+- [GitHub](https://github.com/BuilderIO)
+- [Status](https://status.builder.io)
+
+## API Evangelist rating
+
+**Kin Score 37.9** — thin · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.3 |
+| Contract quality | 61.6 |
+| Contract governance | 23.5 |
+| Operational transparency | 26.3 |
+| Developer ergonomics | 25.0 |
+| Access clarity | 18.4 |
+
+**Agent readiness 64.4** — agent-native
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | na |
+| MCP Server | verified |
+| Auth Clarity | served (partial credit) |
+| Idempotency | na |
+| Error Semantics | verified |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | na |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | yes |
+| Agentic Commerce | — |
+| Pagination Ratio | paginated |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 16.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/builder-io/](https://apis.io/providers/builder-io/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Builder.io: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/builder-io/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
